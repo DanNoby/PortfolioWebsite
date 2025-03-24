@@ -1,4 +1,3 @@
-// Wait for the DOM to fully load
 document.addEventListener("DOMContentLoaded", function () {
   // Mobile Menu Toggle
   const menuToggle = document.querySelector(".menu-toggle");
@@ -50,8 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
       filterBtns.forEach((filterBtn) => {
         filterBtn.classList.remove("active");
       });
-
-      // Add active class to clicked button
       this.classList.add("active");
 
       const filterValue = this.getAttribute("data-filter");
@@ -87,12 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Modal functionality
+  // Modal
   const modalLinks = document.querySelectorAll("[data-modal]");
   const modals = document.querySelectorAll(".modal");
   const closeButtons = document.querySelectorAll(".close-modal");
-
-  // Open modal when clicking on read more links
   modalLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
@@ -101,93 +96,86 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (modal) {
         modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+        document.body.style.overflow = "hidden";
       }
     });
   });
 
-  // Close modal when clicking on close button
+  // Close modal
   closeButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const modal = this.closest(".modal");
       modal.style.display = "none";
-      document.body.style.overflow = "auto"; // Enable scrolling again
+      document.body.style.overflow = "auto";
     });
   });
 
-  // Close modal when clicking outside the modal content
+  // clicking outside modal
   window.addEventListener("click", function (e) {
     modals.forEach((modal) => {
       if (e.target === modal) {
         modal.style.display = "none";
-        document.body.style.overflow = "auto"; // Enable scrolling again
+        document.body.style.overflow = "auto";
       }
     });
   });
 
-  // Close modal when pressing ESC key
+  // exit modal when ESC
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
       modals.forEach((modal) => {
         if (modal.style.display === "block") {
           modal.style.display = "none";
-          document.body.style.overflow = "auto"; // Enable scrolling again
+          document.body.style.overflow = "auto";
         }
       });
     }
   });
 
-  // Form validation and submission
-  const contactForm = document.querySelector(".contact-form form");
+  // animate progress
+  function animateProgress(elementId, endValue, color) {
+    const progressElement = document.getElementById(elementId);
+    if (!progressElement) return;
 
+    const valueDisplay = progressElement.querySelector(".progress-value");
+    let startValue = 0;
+
+    const progress = setInterval(() => {
+      startValue++;
+      valueDisplay.textContent = `${startValue}%`;
+
+      // Update progress background
+      progressElement.style.background = `conic-gradient(${color} ${
+        startValue * 3.6
+      }deg, #ededed 0deg)`;
+
+      if (startValue >= endValue) {
+        clearInterval(progress);
+      }
+    }, 30);
+  }
+
+  // Form validation
+  const contactForm = document.querySelector(".contact-form form");
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
-      e.preventDefault(); // Prevent the default form submission
-
-      // Validate form inputs
+      e.preventDefault();
       const nameInput = contactForm.querySelector('input[placeholder="Name"]');
       const emailInput = contactForm.querySelector(
         'input[placeholder="E-mail"]'
       );
       const messageInput = contactForm.querySelector("textarea");
 
-      // Simple validation
       if (validateForm(nameInput, emailInput, messageInput)) {
-        // If validation passes
         alert("Form submitted successfully! Thank you for your message.");
-        contactForm.reset(); // Clear the form
+        contactForm.reset();
       } else {
-        // If validation fails
         alert("Please enter valid details in all required fields.");
       }
     });
   }
 });
 
-// Function to animate skill progress
-function animateProgress(elementId, endValue, color) {
-  const progressElement = document.getElementById(elementId);
-  if (!progressElement) return;
-
-  const valueDisplay = progressElement.querySelector(".progress-value");
-  let startValue = 0;
-
-  const progress = setInterval(() => {
-    startValue++;
-    valueDisplay.textContent = `${startValue}%`;
-
-    // Update progress background
-    progressElement.style.background = `conic-gradient(${color} ${
-      startValue * 3.6
-    }deg, #ededed 0deg)`;
-
-    if (startValue >= endValue) {
-      clearInterval(progress);
-    }
-  }, 30);
-}
-
-// Form validation function
 function validateForm(nameInput, emailInput, messageInput) {
   console.log("Name:", nameInput.value);
   console.log("Email:", emailInput.value);
