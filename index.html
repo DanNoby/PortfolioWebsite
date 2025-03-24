@@ -2,268 +2,205 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personal Portfolio - Danny Noby Joseph</title>
-
-    <!-- bootstrap css cdn link  -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
-
-    <!-- custom css file -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
-    <nav
-      id="navbar-top"
-      class="navbar navbar-expand-lg navbar-light bg-white sticky-top"
-    >
-      <div class="container-fluid px-5">
-        <a class="navbar-brand fw-bold fs-2" href="#" style="color: #3f396d"
-          >Danny</a
-        >
-        <button
-          class="nav-menu d-md-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <i class="bi bi-menu-button-fill"></i>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-center"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav gap-4" style="font-size: 1.1rem">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#service">Service</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Portfolio</a>
-            </li>
-          </ul>
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="container">
+        <a class="logo" href="#">Danny</a>
+        <div class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-        <button class="c-btn ms-4 py-2 px-4 rounded-pill d-none d-md-block">
-          Contact
-        </button>
+        <ul class="nav-menu">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+        </ul>
+        <button class="contact-btn">Contact</button>
       </div>
     </nav>
-    <!-- navbar ends here -->
 
-    <!-- home section starts  -->
-    <section class="home pt-5 pb-5" id="home">
-      <div class="row justify-content-evenly align-middle">
-        <!-- here data-aos is used for adding aos animation  -->
-        <div
-          class="col-10 col-md-6 text-center text-md-start"
-          data-aos="slide-right"
-        >
-          <h2 style="color: #3f396d">
-            Hello! I Am <br /><span class="c-orange">Danny Noby Joseph</span>
-          </h2>
-          <p class="text-muted">
-            I'm a sophomore at Vellore Institute of Technology, Chennai pursuing
-            Computer Science and Engineering and specializing in Artificial
-            Intelligence and Machine Learning.<br />
-            I'm a game developer and I love researching in Math & Physics. I'm
-            currently cooking up projects based on LLMs 🛠️.
-          </p>
-          <button class="c-btn h-btn mt-3 py-3 px-5 rounded-pill">
-            Read about me
-          </button>
-        </div>
-        <div class="col-10 col-md-4 d-none d-md-block">
-          <img src="images/banner-01.jpg" class="img-fluid" alt="" />
+    <!-- Home Section -->
+    <section id="home" class="home-section">
+      <div class="container">
+        <div class="home-content">
+          <div class="home-text">
+            <h2>
+              Hello! I Am <br /><span class="highlight">Danny Noby Joseph</span>
+            </h2>
+            <p>
+              I'm a sophomore at Vellore Institute of Technology, Chennai
+              pursuing Computer Science and Engineering and specializing in
+              Artificial Intelligence and Machine Learning.<br />
+              I'm a game developer and I love researching in Math & Physics. I'm
+              currently cooking up projects based on LLMs 🛠️.
+            </p>
+            <a href="#service"
+              ><button class="btn primary-btn">Read about me</button></a
+            >
+          </div>
+          <div class="home-image">
+            <img src="images/banner-01.jpg" alt="Profile Image" />
+          </div>
         </div>
       </div>
     </section>
-    <!-- home section ends here -->
 
-    <!-- expertise section starts -->
-    <section class="expertise mt-5" id="service">
-      <div class="heading text-center">
-        <small>My Expertise</small>
-        <h3>
-          Provide Wide Range of <br />
-          Digital Services
-        </h3>
-      </div>
-      <div class="row justify-content-evenly mt-5">
-        <div class="col-10 col-md-4" data-aos="fade-up">
-          <div class="service-card">
-            <div class="img">
-              <img
-                src="images/service-icon1.png"
-                class="w-25 img-fluid img"
-                alt=""
-              />
+    <!-- Services Section -->
+    <section id="service" class="service-section">
+      <div class="container">
+        <div class="section-heading">
+          <small>My Expertise</small>
+          <h3>Provide Wide Range of <br />Digital Services</h3>
+        </div>
+        <div class="services-container">
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-image">
+              <img src="images/service-icon1.png" alt="Game Development" />
             </div>
-            <div class="content mt-3">
+            <div class="service-content">
               <h4>Game Development</h4>
-              <p class="text-muted">
+              <p>
                 Prodominantly using Godot Engine for building games, and blender
                 to model objects
               </p>
-              <a href="" class="link">Read More</a>
+              <a href="#" class="link">Read More</a>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 col-10" data-aos="fade-up">
-          <div class="service-card">
-            <div class="img">
-              <img
-                src="images/service-icon3.png"
-                class="w-25 img-fluid img"
-                alt=""
-              />
+
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-image">
+              <img src="images/service-icon3.png" alt="Machine Learning" />
             </div>
-            <div class="content mt-3">
+            <div class="service-content">
               <h4>Machine Learning Models</h4>
-              <p class="text-muted">
+              <p>
                 Research in LLMs, and industry level certifications in ML.
                 Specializing in ML
               </p>
-              <a href="" class="link">Read More</a>
+              <a href="#" class="link">Read More</a>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 col-10" data-aos="fade-up">
-          <div class="service-card">
-            <div class="img">
-              <img
-                src="images/service-icon2.png"
-                class="w-25 img-fluid img"
-                alt=""
-              />
+
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-image">
+              <img src="images/service-icon2.png" alt="Web Development" />
             </div>
-            <div class="content mt-3">
+            <div class="service-content">
               <h4>Web Development</h4>
-              <p class="text-muted">
+              <p>
                 Building websites using HTML, CSS, JavaScript, ReactJS, and
                 NodeJS
               </p>
-              <a href="" class="link">Read More</a>
+              <a href="#" class="link">Read More</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- expertise section ends here -->
 
-    <!-- skill section starts -->
-    <section class="skill mt-5 py-5" id="about">
-      <div class="row justify-content-evenly">
-        <div class="col-10 col-md-5 skill-with-progress" data-aos="slide-right">
-          <div class="row justify-content-evenly">
-            <div class="col-10 col-md-6">
-              <div class="progress-card ms-3 ms-md-0">
-                <div class="circular-progress html-css">
-                  <span class="progress-value html-progress">0%</span>
+    <!-- Skills Section -->
+    <section id="about" class="skills-section">
+      <div class="container">
+        <div class="skills-container">
+          <div class="skill-progress">
+            <div class="progress-row">
+              <div class="progress-card">
+                <div class="circular-progress" id="python-progress">
+                  <span class="progress-value">0%</span>
                 </div>
-                <br />
-                <span class="text">Python</span>
+                <span class="skill-name">Python</span>
+              </div>
+
+              <div class="progress-card">
+                <div class="circular-progress" id="javascript-progress">
+                  <span class="progress-value">0%</span>
+                </div>
+                <span class="skill-name">JavaScript</span>
               </div>
             </div>
-            <div class="col-10 col-md-6 mt-4 mt-md-0">
-              <div class="progress-card ms-3 ms-md-0">
-                <div class="circular-progress javascript">
-                  <span class="progress-value javascript-progress">0%</span>
+
+            <div class="progress-row">
+              <div class="progress-card">
+                <div class="circular-progress" id="cpp-progress">
+                  <span class="progress-value">0%</span>
                 </div>
-                <br />
-                <span class="text">JavaScript</span>
+                <span class="skill-name">C++</span>
               </div>
-            </div>
-          </div>
-          <div class="row justify-content-evenly mt-4">
-            <div class="col-10 col-md-6">
-              <div class="progress-card ms-3 ms-md-0">
-                <div class="circular-progress php">
-                  <span class="progress-value php-progress">0%</span>
+
+              <div class="progress-card">
+                <div class="circular-progress" id="java-progress">
+                  <span class="progress-value">0%</span>
                 </div>
-                <br />
-                <span class="text">C++</span>
-              </div>
-            </div>
-            <div class="col-10 col-md-6 mt-4 mt-md-0">
-              <div class="progress-card ms-3 ms-md-0">
-                <div class="circular-progress reactjs">
-                  <span class="progress-value reactjs-progress">0%</span>
-                </div>
-                <br />
-                <span class="text">Java</span>
+                <span class="skill-name">Java</span>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-10 col-md-5 skill-detail" data-aos="slide-left">
-          <div class="heading mt-5 mt-md-3">
-            <small>My Skills</small>
-            <h3>Experiences with Tools</h3>
-            <p class="text-muted">
-              I primarily use Godot and Blender for game development, and I use
-              TensorFlow and PyTorch for Machine Learning. I have a strong
-              passion for Art as well. I use Adobe premiere pro, photoshop and
-              flipaclip for my art.
-            </p>
-            <p class="text-muted">
-              I do animation as well, frame by frame 2D animation using
-              flipaclip
-            </p>
-            <button class="c-btn h-btn mt-3 py-3 px-5 rounded-pill">
-              <!-- here download attribute is used for adding download functionality to button  -->
-              <a
-                href="Resume.pdf"
-                download="SampleCV"
-                style="text-decoration: none; color: #fff"
-                >Download CV</a
-              >
-            </button>
+
+          <div class="skill-details">
+            <div class="section-heading">
+              <small>My Skills</small>
+              <h3>Experiences with Tools</h3>
+              <p>
+                I primarily use Godot and Blender for game development, and I
+                use TensorFlow and PyTorch for Machine Learning. I have a strong
+                passion for Art as well. I use Adobe premiere pro, photoshop and
+                flipaclip for my art.
+              </p>
+              <p>
+                I do animation as well, frame by frame 2D animation using
+                flipaclip
+              </p>
+              <button class="btn primary-btn">
+                <a href="Resume.pdf" download="SampleCV">Download CV</a>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- skill section end here -->
 
-    <!-- portfolio section starts here -->
-    <section class="portfolio" id="portfolio">
-      <div class="heading text-center pt-5">
-        <small>Creative Work</small>
-        <h3>Check My Portfolio</h3>
-      </div>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+      <div class="container">
+        <div class="section-heading">
+          <small>Creative Work</small>
+          <h3>Check My Portfolio</h3>
+        </div>
 
-      <div id="myBtnContainer" class="text-center mt-4">
-        <!-- here we will create custom attribute using data- for filtering -->
-        <button class="filter-item" data-filter="all">All</button>
-        <button class="filter-item" data-filter="game">Game</button>
-        <button class="filter-item" data-filter="program">Program</button>
-        <button class="filter-item" data-filter="website">Website</button>
-        <button class="filter-item" data-filter="blockchain">BlockChain</button>
-      </div>
-      <div class="portfolio-body">
-        <div class="row justify-content-evenly px-4">
-          <div
-            class="post col-md-4 game all col-10 mt-3 mt-md-0"
-            data-aos="fade-up"
-          >
-            <div class="card">
-              <img src="images/octorythm.gif" class="card-img-top" alt="..." />
-              <div class="card-body text-center">
-                <h4 class="card-title">OctoRythm Game</h4>
-                <span class="badge bg-secondary badge-pill">GDScript</span>
-                <span class="badge bg-secondary badge-pill">Godot</span>
-                <span class="badge bg-secondary badge-pill mb-2">Blender</span>
-                <span class="badge bg-secondary badge-pill mb-2">Game</span
-                ><br />
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="game">Game</button>
+          <button class="filter-btn" data-filter="program">Program</button>
+          <button class="filter-btn" data-filter="website">Website</button>
+          <button class="filter-btn" data-filter="blockchain">
+            BlockChain
+          </button>
+        </div>
+
+        <div class="portfolio-container">
+          <div class="portfolio-item game all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <img src="images/octorythm.gif" alt="OctoRythm Game" />
+              <div class="portfolio-content">
+                <h4>OctoRythm Game</h4>
+                <div class="tags">
+                  <span class="tag">GDScript</span>
+                  <span class="tag">Godot</span>
+                  <span class="tag">Blender</span>
+                  <span class="tag">Game</span>
+                </div>
                 <a
                   href="https://github.com/bawling-hackhub/hackhub-game"
                   class="link"
@@ -272,105 +209,90 @@
               </div>
             </div>
           </div>
-          <div
-            class="post col-md-4 game all col-10 mt-3 mt-md-0"
-            data-aos="fade-up"
-          >
-            <div class="card">
-              <img src="images/chess.gif" class="card-img-top" alt="..." />
-              <div class="card-body text-center">
-                <h4 class="card-title">Chess website</h4>
-                <span class="badge bg-secondary badge-pill">HTML & CSS</span>
-                <span class="badge bg-secondary badge-pill">JavaScript</span>
-                <span class="badge bg-secondary badge-pill mb-2">Website</span
-                ><br />
-                <a
-                  href="https://github.com/DanNoby/JsChess"
-                  class="read-more-btn link"
+
+          <div class="portfolio-item website all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <img src="images/chess.gif" alt="Chess website" />
+              <div class="portfolio-content">
+                <h4>Chess website</h4>
+                <div class="tags">
+                  <span class="tag">HTML & CSS</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Website</span>
+                </div>
+                <a href="https://github.com/DanNoby/JsChess" class="link"
                   >Check it out</a
                 >
               </div>
             </div>
           </div>
-          <div
-            class="post col-md-4 website all col-10 mt-3 mt-md-0"
-            data-aos="fade-up"
-          >
-            <div class="card">
-              <img src="images/nxnmaze.gif" class="card-img-top" alt="..." />
-              <div class="card-body text-center">
-                <h4 class="card-title">NxN maze</h4>
-                <span class="badge bg-secondary badge-pill">C++</span>
-                <span class="badge bg-secondary badge-pill">Python</span>
-                <span class="badge bg-secondary badge-pill">Program</span><br />
+
+          <div class="portfolio-item program all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <img src="images/nxnmaze.gif" alt="NxN maze" />
+              <div class="portfolio-content">
+                <h4>NxN maze</h4>
+                <div class="tags">
+                  <span class="tag">C++</span>
+                  <span class="tag">Python</span>
+                  <span class="tag">Program</span>
+                </div>
                 <a
                   href="https://github.com/DanNoby/Puzzles/blob/main/NxNmaze.cpp"
-                  class="read-more-btn link"
+                  class="link"
                   >Check it out</a
                 >
               </div>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-evenly mt-4 px-4">
-          <div
-            class="post col-md-4 game all col-10 mt-3 mt-md-0"
-            data-aos="fade-up"
-          >
-            <div class="card">
-              <img
-                src="images/8puzzleshow.gif"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body text-center">
-                <h4 class="card-title">8 Puzzle AI</h4>
-                <span class="badge bg-secondary badge-pill">Python</span>
-                <span class="badge bg-secondary badge-pill">Program</span><br />
+
+          <div class="portfolio-item program all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <img src="images/8puzzleshow.gif" alt="8 Puzzle AI" />
+              <div class="portfolio-content">
+                <h4>8 Puzzle AI</h4>
+                <div class="tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Program</span>
+                </div>
                 <a
                   href="https://github.com/DanNoby/Puzzles/blob/main/8puzzle.py"
-                  class="read-more-btn link"
+                  class="link"
                   >Check it out</a
                 >
               </div>
             </div>
           </div>
-          <div
-            class="post col-md-4 game all col-10 mt-3 mt-md-0"
-            data-aos="fade-up"
-          >
-            <div class="card">
-              <img
-                src="images/firstplatformer.gif"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body text-center">
-                <h4 class="card-title">First Platformer</h4>
-                <span class="badge bg-secondary badge-pill">GDScript</span>
-                <span class="badge bg-secondary badge-pill">Godot</span>
-                <span class="badge bg-secondary badge-pill mb-2">Game</span
-                ><br />
-                <a href="#" class="read-more-btn link">Check it out</a>
+
+          <div class="portfolio-item game all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <img src="images/firstplatformer.gif" alt="First Platformer" />
+              <div class="portfolio-content">
+                <h4>First Platformer</h4>
+                <div class="tags">
+                  <span class="tag">GDScript</span>
+                  <span class="tag">Godot</span>
+                  <span class="tag">Game</span>
+                </div>
+                <a href="#" class="link">Check it out</a>
               </div>
             </div>
           </div>
-          <div class="post col-md-4 all col-10 mt-3 mt-md-0" data-aos="fade-up">
-            <div class="card">
-              <img src="images/blockchain.png" class="card-img-top" alt="..." />
-              <div class="card-body text-center">
-                <h4 class="card-title">
-                  Decentralized Identity with blockchain
-                </h4>
-                <span class="badge bg-secondary badge-pill">Solidity</span>
-                <span class="badge bg-secondary badge-pill">JavaScript</span>
-                <span class="badge bg-secondary badge-pill mb-2">Website</span>
-                <span class="badge bg-secondary badge-pill mb-2"
-                  >Blockchain</span
-                ><br />
+
+          <div class="portfolio-item blockchain all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <img src="images/blockchain.png" alt="Decentralized Identity" />
+              <div class="portfolio-content">
+                <h4>Decentralized Identity with blockchain</h4>
+                <div class="tags">
+                  <span class="tag">Solidity</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Website</span>
+                  <span class="tag">Blockchain</span>
+                </div>
                 <a
                   href="https://github.com/DanNoby/Decentralized-Self-Identity-Platform"
-                  class="read-more-btn link"
+                  class="link"
                   >Check it out</a
                 >
               </div>
@@ -379,151 +301,137 @@
         </div>
       </div>
     </section>
-    <!-- portfolio section ends here -->
 
-    <!-- contact section starts -->
-    <section class="contact py-5" id="contact">
-      <div class="heading text-center">
-        <small>Get in Touch</small>
-        <h3>Feel Free to Contact</h3>
-      </div>
-      <div class="row justify-content-evenly mt-5">
-        <div class="col-md-5 col-10 contact-details" data-aos="slide-right">
-          <div class="row justify-content-evenly">
-            <div class="col-1">
-              <i class="bi bi-geo-alt-fill"></i>
-            </div>
-            <div class="col-11">
-              <p>Vellore institute of Technology, Chennai</p>
-              <p>Jleeb al Shuyoukh, Kuwait</p>
-            </div>
-          </div>
-          <div class="row justify-content-evenly">
-            <div class="col-1">
-              <i class="bi bi-telephone-fill"></i>
-            </div>
-            <div class="col-11">
-              <p>+91 9567360327</p>
-            </div>
-          </div>
-          <div class="row justify-content-evenly">
-            <div class="col-1">
-              <i class="bi bi-send-fill"></i>
-            </div>
-            <div class="col-11">
-              <p>dannynobyj@gmail.com</p>
-              <p>dannynoby.joseph2023@vitstudent.ac.in</p>
-            </div>
-          </div>
-          <div class="row justify-content-evenly">
-            <div class="col-1">
-              <i class="bi bi-globe-americas"></i>
-            </div>
-            <div class="col-11">
-              <p>dannoby.xyz</p>
-            </div>
-          </div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-heading">
+          <small>Get in Touch</small>
+          <h3>Feel Free to Contact</h3>
         </div>
-        <div class="col-md-5 col-10 mt-3 mt-md-0" data-aos="slide-left">
-          <div class="contact-form">
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="Name"
-              />
+
+        <div class="contact-container">
+          <div class="contact-info" data-aos="slide-right">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="info-content">
+                <p>Vellore institute of Technology, Chennai</p>
+                <p>Jleeb al Shuyoukh, Kuwait</p>
+              </div>
             </div>
-            <div class="mb-3">
-              <input
-                type="email"
-                class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="E-mail"
-              />
+
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <div class="info-content">
+                <p>+91 9567360327</p>
+              </div>
             </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="Mobile No."
-              />
+
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <div class="info-content">
+                <p>dannynobyj@gmail.com</p>
+                <p>dannynoby.joseph2023@vitstudent.ac.in</p>
+              </div>
             </div>
-            <div class="mb-3">
-              <textarea
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                placeholder="Message"
-                rows="5"
-              ></textarea>
+
+            <div class="info-item">
+              <i class="fas fa-globe"></i>
+              <div class="info-content">
+                <p>dannoby.xyz</p>
+              </div>
             </div>
-            <button class="c-btn h-btn mt-3 py-3 px-5 rounded-pill">
-              Submit
-            </button>
+          </div>
+
+          <div class="contact-form" data-aos="slide-left">
+            <form>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="E-mail"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Mobile No."
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  class="form-control"
+                  placeholder="Message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn primary-btn">Submit</button>
+            </form>
           </div>
         </div>
       </div>
     </section>
-    <!-- contact section ends here -->
 
-    <!-- now we will make back to top button when user click on it it will be redirected to top page  -->
-    <button
-      type="button"
-      class="btn btn-floating btn-lg rounded-pill"
-      id="btn-back-to-top"
-    >
-      <i class="bi bi-arrow-up"></i>
+    <!-- Back to Top Button -->
+    <button type="button" id="back-to-top">
+      <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- footer section starts  -->
-    <footer class="text-center text-muted py-4">
-      <h3 class="text-white pt-4" data-aos="fade-up">Portfolio</h3>
-      <div class="link-group mt-5" data-aos="fade-up">
-        <a href="#home">Home</a>
-        <div class="vr"></div>
-        <a href="#about">About</a>
-        <div class="vr"></div>
-        <a href="#service">Service</a>
-        <div class="vr"></div>
-        <a href="#portfolio">Portfolio</a>
-        <div class="vr"></div>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="social-links mt-5" data-aos="fade-up">
-        <button href="" class="rounded-pill dribble">
-          <i class="bi bi-dribbble"></i>
-        </button>
-        <button href="" class="rounded-pill whatsapp">
-          <i class="bi bi-whatsapp"></i>
-        </button>
-        <button href="" class="rounded-pill behance">
-          <i class="bi bi-behance"></i>
-        </button>
-      </div>
-      <hr class="text-muted my-4" />
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <h3>Portfolio</h3>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <span class="divider"></span>
+          <a href="#about">About</a>
+          <span class="divider"></span>
+          <a href="#service">Service</a>
+          <span class="divider"></span>
+          <a href="#portfolio">Portfolio</a>
+          <span class="divider"></span>
+          <a href="#contact">Contact</a>
+        </div>
 
-      <p>Made with Love -Danny</p>
+        <div class="social-links">
+          <a href="#" class="social-btn dribble">
+            <i class="fab fa-dribbble"></i>
+          </a>
+          <a href="#" class="social-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="#" class="social-btn behance">
+            <i class="fab fa-behance"></i>
+          </a>
+        </div>
+
+        <hr />
+        <p>Made with Love -Danny</p>
+      </div>
     </footer>
-    <!-- footer section ends here -->
 
-    <!-- bootstrap javascript cdn link  -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- AOS library javascript link  -->
+    <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      // initializing AOS library
+      // Initialize AOS animation library
       AOS.init({
         duration: 1000,
         offset: 50,
       });
     </script>
-    <!-- custom js file linking -->
+
+    <!-- Custom JavaScript -->
     <script src="js/script.js"></script>
   </body>
 </html>
