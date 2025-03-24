@@ -3,8 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal Portfolio - Danny Noby Joseph</title>
+    <title>Danny Noby Joseph | Game Developer & ML Engineer</title>
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Google Fonts - Adding modern fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
@@ -15,7 +22,7 @@
     <!-- Navigation -->
     <nav id="navbar">
       <div class="container">
-        <a class="logo" href="#">Danny</a>
+        <a class="logo" href="#">Danny<span class="logo-dot">.</span></a>
         <div class="menu-toggle">
           <span></span>
           <span></span>
@@ -23,7 +30,7 @@
         </div>
         <ul class="nav-menu">
           <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#service">Service</a></li>
+          <li><a href="#service">Services</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
         </ul>
@@ -36,24 +43,34 @@
       <div class="container">
         <div class="home-content">
           <div class="home-text">
-            <h2>
-              Hello! I Am <br /><span class="highlight">Danny Noby Joseph</span>
-            </h2>
+            <span class="greeting">👋 Hello, I'm</span>
+            <h1 class="name">Danny Noby Joseph</h1>
+            <div class="typewriter">
+              <span id="type-text">Game Developer & ML Engineer</span>
+            </div>
             <p>
-              I'm a sophomore at Vellore Institute of Technology, Chennai
-              pursuing Computer Science and Engineering and specializing in
-              Artificial Intelligence and Machine Learning.<br />
-              I'm a game developer and I love researching in Math & Physics. I'm
-              currently cooking up projects based on LLMs 🛠️.
+              Sophomore at Vellore Institute of Technology, Chennai pursuing
+              Computer Science with a specialization in AI & Machine Learning.
+              Passionate game developer with a love for mathematics, physics,
+              and building cutting-edge LLM projects.
             </p>
-            <a href="#service"
-              ><button class="btn primary-btn">Read about me</button></a
-            >
+            <div class="home-buttons">
+              <a href="#service" class="btn primary-btn">View Portfolio</a>
+              <a href="#contact" class="btn outline-btn">Contact Me</a>
+            </div>
           </div>
           <div class="home-image">
-            <img src="images/banner-01.jpg" alt="Profile Image" />
+            <div class="image-container">
+              <img src="images/banner-01.jpg" alt="Profile Image" />
+              <div class="image-shape"></div>
+            </div>
           </div>
         </div>
+      </div>
+      <div class="home-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
       </div>
     </section>
 
@@ -61,49 +78,67 @@
     <section id="service" class="service-section">
       <div class="container">
         <div class="section-heading">
-          <small>My Expertise</small>
-          <h3>Provide Wide Range of <br />Digital Services</h3>
+          <span class="subtitle">My Expertise</span>
+          <h2>Services I Offer</h2>
         </div>
         <div class="services-container">
           <div class="service-card" data-aos="fade-up">
-            <div class="service-image">
-              <img src="images/service-icon1.png" alt="Game Development" />
+            <div class="service-icon">
+              <i class="fas fa-gamepad"></i>
             </div>
             <div class="service-content">
-              <h4>Game Development</h4>
+              <h3>Game Development</h3>
               <p>
-                Prodominantly using Godot Engine for building games, and blender
-                to model objects
+                Creating engaging 2D and 3D games using Godot Engine, with
+                custom models and environments built in Blender.
               </p>
-              <a href="#" class="link">Read More</a>
+              <a
+                href="#"
+                class="service-link"
+                data-toggle="modal"
+                data-target="game-dev-modal"
+                >Learn More <i class="fas fa-arrow-right"></i
+              ></a>
             </div>
           </div>
 
           <div class="service-card" data-aos="fade-up">
-            <div class="service-image">
-              <img src="images/service-icon3.png" alt="Machine Learning" />
+            <div class="service-icon">
+              <i class="fas fa-brain"></i>
             </div>
             <div class="service-content">
-              <h4>Machine Learning Models</h4>
+              <h3>Machine Learning</h3>
               <p>
-                Research in LLMs, and industry level certifications in ML.
-                Specializing in ML
+                Developing advanced ML models with a focus on LLMs, computer
+                vision, and intelligent systems.
               </p>
-              <a href="#" class="link">Read More</a>
+              <a
+                href="#"
+                class="service-link"
+                data-toggle="modal"
+                data-target="ml-modal"
+                >Learn More <i class="fas fa-arrow-right"></i
+              ></a>
             </div>
           </div>
 
           <div class="service-card" data-aos="fade-up">
-            <div class="service-image">
-              <img src="images/service-icon2.png" alt="Web Development" />
+            <div class="service-icon">
+              <i class="fas fa-code"></i>
             </div>
             <div class="service-content">
-              <h4>Web Development</h4>
+              <h3>Web Development</h3>
               <p>
-                Building websites using HTML, CSS, JavaScript, ReactJS, and
-                NodeJS
+                Creating responsive, modern websites using HTML, CSS,
+                JavaScript, React, and Node.js.
               </p>
-              <a href="#" class="link">Read More</a>
+              <a
+                href="#"
+                class="service-link"
+                data-toggle="modal"
+                data-target="web-dev-modal"
+                >Learn More <i class="fas fa-arrow-right"></i
+              ></a>
             </div>
           </div>
         </div>
@@ -118,14 +153,36 @@
             <div class="progress-row">
               <div class="progress-card">
                 <div class="circular-progress" id="python-progress">
-                  <span class="progress-value">0%</span>
+                  <svg class="progress-ring" width="150" height="150">
+                    <circle
+                      class="progress-ring-circle"
+                      stroke="#fca61f"
+                      stroke-width="10"
+                      fill="transparent"
+                      r="65"
+                      cx="75"
+                      cy="75"
+                    />
+                  </svg>
+                  <span class="progress-value">90%</span>
                 </div>
                 <span class="skill-name">Python</span>
               </div>
 
               <div class="progress-card">
                 <div class="circular-progress" id="javascript-progress">
-                  <span class="progress-value">0%</span>
+                  <svg class="progress-ring" width="150" height="150">
+                    <circle
+                      class="progress-ring-circle"
+                      stroke="#6f34fe"
+                      stroke-width="10"
+                      fill="transparent"
+                      r="65"
+                      cx="75"
+                      cy="75"
+                    />
+                  </svg>
+                  <span class="progress-value">75%</span>
                 </div>
                 <span class="skill-name">JavaScript</span>
               </div>
@@ -134,14 +191,36 @@
             <div class="progress-row">
               <div class="progress-card">
                 <div class="circular-progress" id="cpp-progress">
-                  <span class="progress-value">0%</span>
+                  <svg class="progress-ring" width="150" height="150">
+                    <circle
+                      class="progress-ring-circle"
+                      stroke="#20c997"
+                      stroke-width="10"
+                      fill="transparent"
+                      r="65"
+                      cx="75"
+                      cy="75"
+                    />
+                  </svg>
+                  <span class="progress-value">80%</span>
                 </div>
                 <span class="skill-name">C++</span>
               </div>
 
               <div class="progress-card">
                 <div class="circular-progress" id="java-progress">
-                  <span class="progress-value">0%</span>
+                  <svg class="progress-ring" width="150" height="150">
+                    <circle
+                      class="progress-ring-circle"
+                      stroke="#3f396d"
+                      stroke-width="10"
+                      fill="transparent"
+                      r="65"
+                      cx="75"
+                      cy="75"
+                    />
+                  </svg>
+                  <span class="progress-value">30%</span>
                 </div>
                 <span class="skill-name">Java</span>
               </div>
@@ -150,21 +229,32 @@
 
           <div class="skill-details">
             <div class="section-heading">
-              <small>My Skills</small>
-              <h3>Experiences with Tools</h3>
+              <span class="subtitle">My Skills</span>
+              <h2>Technical Expertise</h2>
               <p>
-                I primarily use Godot and Blender for game development, and I
-                use TensorFlow and PyTorch for Machine Learning. I have a strong
-                passion for Art as well. I use Adobe premiere pro, photoshop and
-                flipaclip for my art.
+                I specialize in game development using Godot Engine and Blender
+                for 3D modeling. My machine learning stack includes TensorFlow
+                and PyTorch, with a focus on developing innovative AI solutions.
               </p>
               <p>
-                I do animation as well, frame by frame 2D animation using
-                flipaclip
+                I'm also passionate about digital art, using Adobe Creative
+                Suite and Flipaclip for animation and design projects.
               </p>
-              <button class="btn primary-btn">
-                <a href="Resume.pdf" download="SampleCV">Download CV</a>
-              </button>
+              <div class="skill-tools">
+                <span class="tool-badge">Godot</span>
+                <span class="tool-badge">Blender</span>
+                <span class="tool-badge">TensorFlow</span>
+                <span class="tool-badge">PyTorch</span>
+                <span class="tool-badge">React</span>
+                <span class="tool-badge">Adobe Suite</span>
+              </div>
+              <a
+                href="Resume.pdf"
+                download="DannyNobyResume"
+                class="btn primary-btn"
+              >
+                <i class="fas fa-download"></i> Download CV
+              </a>
             </div>
           </div>
         </div>
@@ -175,126 +265,185 @@
     <section id="portfolio" class="portfolio-section">
       <div class="container">
         <div class="section-heading">
-          <small>Creative Work</small>
-          <h3>Check My Portfolio</h3>
+          <span class="subtitle">Featured Work</span>
+          <h2>Latest Projects</h2>
         </div>
 
         <div class="filter-buttons">
           <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="game">Game</button>
-          <button class="filter-btn" data-filter="program">Program</button>
-          <button class="filter-btn" data-filter="website">Website</button>
+          <button class="filter-btn" data-filter="game">Games</button>
+          <button class="filter-btn" data-filter="program">Programs</button>
+          <button class="filter-btn" data-filter="website">Web</button>
           <button class="filter-btn" data-filter="blockchain">
-            BlockChain
+            Blockchain
           </button>
         </div>
 
         <div class="portfolio-container">
           <div class="portfolio-item game all" data-aos="fade-up">
             <div class="portfolio-card">
-              <img src="images/octorythm.gif" alt="OctoRythm Game" />
+              <div class="portfolio-image">
+                <img src="images/octorythm.gif" alt="OctoRythm Game" />
+                <div class="portfolio-overlay">
+                  <a
+                    href="https://github.com/bawling-hackhub/hackhub-game"
+                    class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
               <div class="portfolio-content">
-                <h4>OctoRythm Game</h4>
+                <h3>OctoRythm Game</h3>
                 <div class="tags">
                   <span class="tag">GDScript</span>
                   <span class="tag">Godot</span>
                   <span class="tag">Blender</span>
-                  <span class="tag">Game</span>
                 </div>
                 <a
                   href="https://github.com/bawling-hackhub/hackhub-game"
-                  class="link"
-                  >Check it out</a
-                >
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
 
           <div class="portfolio-item website all" data-aos="fade-up">
             <div class="portfolio-card">
-              <img src="images/chess.gif" alt="Chess website" />
+              <div class="portfolio-image">
+                <img src="images/chess.gif" alt="Chess website" />
+                <div class="portfolio-overlay">
+                  <a
+                    href="https://github.com/DanNoby/JsChess"
+                    class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
               <div class="portfolio-content">
-                <h4>Chess website</h4>
+                <h3>Chess Website</h3>
                 <div class="tags">
                   <span class="tag">HTML & CSS</span>
                   <span class="tag">JavaScript</span>
-                  <span class="tag">Website</span>
                 </div>
-                <a href="https://github.com/DanNoby/JsChess" class="link"
-                  >Check it out</a
-                >
+                <a
+                  href="https://github.com/DanNoby/JsChess"
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
 
           <div class="portfolio-item program all" data-aos="fade-up">
             <div class="portfolio-card">
-              <img src="images/nxnmaze.gif" alt="NxN maze" />
+              <div class="portfolio-image">
+                <img
+                  src="images/nxnmaze.gif"
+                  alt="NxN maze"
+                  style="object-fit: contain"
+                />
+                <div class="portfolio-overlay">
+                  <a
+                    href="https://github.com/DanNoby/Puzzles/blob/main/NxNmaze.cpp"
+                    class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
               <div class="portfolio-content">
-                <h4>NxN maze</h4>
+                <h3>NxN Maze Generator</h3>
                 <div class="tags">
                   <span class="tag">C++</span>
                   <span class="tag">Python</span>
-                  <span class="tag">Program</span>
                 </div>
                 <a
                   href="https://github.com/DanNoby/Puzzles/blob/main/NxNmaze.cpp"
-                  class="link"
-                  >Check it out</a
-                >
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
 
           <div class="portfolio-item program all" data-aos="fade-up">
             <div class="portfolio-card">
-              <img src="images/8puzzleshow.gif" alt="8 Puzzle AI" />
+              <div class="portfolio-image">
+                <img
+                  src="images/8puzzleshow.gif"
+                  alt="8 Puzzle AI"
+                  style="object-fit: contain"
+                />
+                <div class="portfolio-overlay">
+                  <a
+                    href="https://github.com/DanNoby/Puzzles/blob/main/8puzzle.py"
+                    class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
               <div class="portfolio-content">
-                <h4>8 Puzzle AI</h4>
+                <h3>8 Puzzle AI Solver</h3>
                 <div class="tags">
                   <span class="tag">Python</span>
-                  <span class="tag">Program</span>
+                  <span class="tag">AI Algorithm</span>
                 </div>
                 <a
                   href="https://github.com/DanNoby/Puzzles/blob/main/8puzzle.py"
-                  class="link"
-                  >Check it out</a
-                >
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
 
           <div class="portfolio-item game all" data-aos="fade-up">
             <div class="portfolio-card">
-              <img src="images/firstplatformer.gif" alt="First Platformer" />
+              <div class="portfolio-image">
+                <img src="images/firstplatformer.gif" alt="First Platformer" />
+                <div class="portfolio-overlay">
+                  <a href="#" class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
               <div class="portfolio-content">
-                <h4>First Platformer</h4>
+                <h3>First Platformer</h3>
                 <div class="tags">
                   <span class="tag">GDScript</span>
                   <span class="tag">Godot</span>
-                  <span class="tag">Game</span>
                 </div>
-                <a href="#" class="link">Check it out</a>
+                <a href="#" class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
 
           <div class="portfolio-item blockchain all" data-aos="fade-up">
             <div class="portfolio-card">
-              <img src="images/blockchain.png" alt="Decentralized Identity" />
+              <div class="portfolio-image">
+                <img src="images/blockchain.png" alt="Decentralized Identity" />
+                <div class="portfolio-overlay">
+                  <a
+                    href="https://github.com/DanNoby/Decentralized-Self-Identity-Platform"
+                    class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
               <div class="portfolio-content">
-                <h4>Decentralized Identity with blockchain</h4>
+                <h3>Decentralized Identity</h3>
                 <div class="tags">
                   <span class="tag">Solidity</span>
                   <span class="tag">JavaScript</span>
-                  <span class="tag">Website</span>
                   <span class="tag">Blockchain</span>
                 </div>
                 <a
                   href="https://github.com/DanNoby/Decentralized-Self-Identity-Platform"
-                  class="link"
-                  >Check it out</a
-                >
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
@@ -306,82 +455,198 @@
     <section id="contact" class="contact-section">
       <div class="container">
         <div class="section-heading">
-          <small>Get in Touch</small>
-          <h3>Feel Free to Contact</h3>
+          <span class="subtitle">Get in Touch</span>
+          <h2>Let's Work Together</h2>
         </div>
 
         <div class="contact-container">
           <div class="contact-info" data-aos="slide-right">
             <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
+              <div class="info-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
               <div class="info-content">
-                <p>Vellore institute of Technology, Chennai</p>
+                <h4>Location</h4>
+                <p>Vellore Institute of Technology, Chennai</p>
                 <p>Jleeb al Shuyoukh, Kuwait</p>
               </div>
             </div>
 
             <div class="info-item">
-              <i class="fas fa-phone"></i>
+              <div class="info-icon">
+                <i class="fas fa-phone"></i>
+              </div>
               <div class="info-content">
+                <h4>Phone</h4>
                 <p>+91 9567360327</p>
               </div>
             </div>
 
             <div class="info-item">
-              <i class="fas fa-envelope"></i>
+              <div class="info-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
               <div class="info-content">
+                <h4>Email</h4>
                 <p>dannynobyj@gmail.com</p>
                 <p>dannynoby.joseph2023@vitstudent.ac.in</p>
               </div>
             </div>
 
             <div class="info-item">
-              <i class="fas fa-globe"></i>
+              <div class="info-icon">
+                <i class="fas fa-globe"></i>
+              </div>
               <div class="info-content">
+                <h4>Website</h4>
                 <p>dannoby.xyz</p>
               </div>
             </div>
           </div>
 
           <div class="contact-form" data-aos="slide-left">
-            <form>
+            <form id="contactForm">
               <div class="form-group">
+                <label for="name">Your Name</label>
                 <input
                   type="text"
+                  id="name"
                   class="form-control"
-                  placeholder="Name"
+                  placeholder="Enter your name"
                   required
                 />
               </div>
               <div class="form-group">
+                <label for="email">Email Address</label>
                 <input
                   type="email"
+                  id="email"
                   class="form-control"
-                  placeholder="E-mail"
+                  placeholder="Enter your email"
                   required
                 />
               </div>
               <div class="form-group">
+                <label for="phone">Phone Number</label>
                 <input
                   type="text"
+                  id="phone"
                   class="form-control"
-                  placeholder="Mobile No."
+                  placeholder="Enter your phone (optional)"
                 />
               </div>
               <div class="form-group">
+                <label for="message">Message</label>
                 <textarea
+                  id="message"
                   class="form-control"
-                  placeholder="Message"
+                  placeholder="Type your message here..."
                   rows="5"
                   required
                 ></textarea>
               </div>
-              <button type="submit" class="btn primary-btn">Submit</button>
+              <button type="submit" class="btn primary-btn btn-submit">
+                <i class="fas fa-paper-plane"></i> Send Message
+              </button>
             </form>
           </div>
         </div>
       </div>
+      <div class="contact-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+      </div>
     </section>
+
+    <!-- Modal Popups for Read More content -->
+    <div class="modal" id="game-dev-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Game Development</h3>
+        <div class="modal-body">
+          <p>
+            I specialize in creating 2D and 3D games using the Godot Engine. My
+            game development process includes:
+          </p>
+          <ul>
+            <li>Building game mechanics and logic using GDScript</li>
+            <li>Creating 3D models and environments with Blender</li>
+            <li>Implementing physics-based gameplay and interactions</li>
+            <li>Designing intuitive user interfaces and control systems</li>
+          </ul>
+          <p>
+            My current focus is on developing rhythm-based games like OctoRythm
+            and platformers that combine engaging gameplay with interesting
+            narratives.
+          </p>
+          <p>
+            I'm constantly expanding my knowledge in game development by
+            experimenting with procedural generation and AI-driven NPCs.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="ml-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Machine Learning Models</h3>
+        <div class="modal-body">
+          <p>
+            As an AI and ML enthusiast, I work on developing various machine
+            learning solutions:
+          </p>
+          <ul>
+            <li>Building and fine-tuning Large Language Models (LLMs)</li>
+            <li>
+              Creating classification and regression models for data analysis
+            </li>
+            <li>
+              Implementing computer vision systems using TensorFlow and PyTorch
+            </li>
+            <li>Exploring reinforcement learning for game AI</li>
+          </ul>
+          <p>
+            I've completed industry-recognized certifications in machine
+            learning and continue to expand my knowledge through personal
+            projects and research.
+          </p>
+          <p>
+            Currently, I'm exploring the integration of LLMs in game development
+            to create more dynamic and interactive gameplay experiences.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="web-dev-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Web Development</h3>
+        <div class="modal-body">
+          <p>
+            I develop responsive and interactive web applications using modern
+            technologies:
+          </p>
+          <ul>
+            <li>Front-end development using HTML, CSS, and JavaScript</li>
+            <li>Building dynamic user interfaces with React.js</li>
+            <li>Server-side development with Node.js</li>
+            <li>Working with databases including MongoDB and MySQL</li>
+          </ul>
+          <p>
+            My web development philosophy focuses on creating clean, efficient,
+            and user-friendly designs that prioritize accessibility and
+            performance.
+          </p>
+          <p>
+            Recent projects include a chess website and contributions to
+            blockchain-based web applications that leverage decentralized
+            technologies.
+          </p>
+        </div>
+      </div>
+    </div>
 
     <!-- Back to Top Button -->
     <button type="button" id="back-to-top">
@@ -391,46 +656,44 @@
     <!-- Footer -->
     <footer>
       <div class="container">
-        <h3>Portfolio</h3>
-        <div class="footer-links">
-          <a href="#home">Home</a>
-          <span class="divider"></span>
-          <a href="#about">About</a>
-          <span class="divider"></span>
-          <a href="#service">Service</a>
-          <span class="divider"></span>
-          <a href="#portfolio">Portfolio</a>
-          <span class="divider"></span>
-          <a href="#contact">Contact</a>
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3>Danny<span class="logo-dot">.</span></h3>
+            <p>Game Developer & ML Engineer</p>
+          </div>
+
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#service">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <div class="social-links">
+            <a href="#" class="social-btn" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="social-btn" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-btn" title="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-btn" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
 
-        <div class="social-links">
-          <a href="#" class="social-btn dribble">
-            <i class="fab fa-dribbble"></i>
-          </a>
-          <a href="#" class="social-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="#" class="social-btn behance">
-            <i class="fab fa-behance"></i>
-          </a>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Danny Noby Joseph. All rights reserved.</p>
         </div>
-
-        <hr />
-        <p>Made with Love -Danny</p>
       </div>
     </footer>
 
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      // Initialize AOS animation library
-      AOS.init({
-        duration: 1000,
-        offset: 50,
-      });
-    </script>
-
     <!-- Custom JavaScript -->
     <script src="js/script.js"></script>
   </body>
