@@ -15,7 +15,7 @@
     <!-- Navigation -->
     <nav id="navbar">
       <div class="container">
-        <a class="logo" href="#">Danny</a>
+        <a class="logo" href="#home">Danny</a>
         <div class="menu-toggle">
           <span></span>
           <span></span>
@@ -27,7 +27,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
         </ul>
-        <button class="contact-btn">Contact</button>
+        <a href="#contact"><button class="contact-btn">Contact</button></a>
       </div>
     </nav>
 
@@ -65,7 +65,7 @@
           <h3>Provide Wide Range of <br />Digital Services</h3>
         </div>
         <div class="services-container">
-          <div class="service-card" data-aos="fade-up">
+          <div class="service-card">
             <div class="service-image">
               <img src="images/service-icon1.png" alt="Game Development" />
             </div>
@@ -75,11 +75,11 @@
                 Prodominantly using Godot Engine for building games, and blender
                 to model objects
               </p>
-              <a href="#" class="link">Read More</a>
+              <a href="#" class="link" data-modal="game-dev-modal">Read More</a>
             </div>
           </div>
 
-          <div class="service-card" data-aos="fade-up">
+          <div class="service-card">
             <div class="service-image">
               <img src="images/service-icon3.png" alt="Machine Learning" />
             </div>
@@ -89,21 +89,18 @@
                 Research in LLMs, and industry level certifications in ML.
                 Specializing in ML
               </p>
-              <a href="#" class="link">Read More</a>
+              <a href="#" class="link" data-modal="ml-modal">Read More</a>
             </div>
           </div>
 
-          <div class="service-card" data-aos="fade-up">
+          <div class="service-card">
             <div class="service-image">
               <img src="images/service-icon2.png" alt="Web Development" />
             </div>
             <div class="service-content">
               <h4>Web Development</h4>
-              <p>
-                Building websites using HTML, CSS, JavaScript, ReactJS, and
-                NodeJS
-              </p>
-              <a href="#" class="link">Read More</a>
+              <p>Building websites using HTML, CSS, JavaScript and ReactJS</p>
+              <a href="#" class="link" data-modal="web-dev-modal">Read More</a>
             </div>
           </div>
         </div>
@@ -190,11 +187,11 @@
         </div>
 
         <div class="portfolio-container">
-          <div class="portfolio-item game all" data-aos="fade-up">
+          <div class="portfolio-item game all">
             <div class="portfolio-card">
               <img src="images/octorythm.gif" alt="OctoRythm Game" />
               <div class="portfolio-content">
-                <h4>OctoRythm Game</h4>
+                <h3>OctoRythm Game</h3>
                 <div class="tags">
                   <span class="tag">GDScript</span>
                   <span class="tag">Godot</span>
@@ -210,11 +207,11 @@
             </div>
           </div>
 
-          <div class="portfolio-item website all" data-aos="fade-up">
+          <div class="portfolio-item website all">
             <div class="portfolio-card">
               <img src="images/chess.gif" alt="Chess website" />
               <div class="portfolio-content">
-                <h4>Chess website</h4>
+                <h3>Chess website</h3>
                 <div class="tags">
                   <span class="tag">HTML & CSS</span>
                   <span class="tag">JavaScript</span>
@@ -227,11 +224,11 @@
             </div>
           </div>
 
-          <div class="portfolio-item program all" data-aos="fade-up">
+          <div class="portfolio-item program all">
             <div class="portfolio-card">
               <img src="images/nxnmaze.gif" alt="NxN maze" />
               <div class="portfolio-content">
-                <h4>NxN maze</h4>
+                <h3>NxN maze</h3>
                 <div class="tags">
                   <span class="tag">C++</span>
                   <span class="tag">Python</span>
@@ -246,11 +243,15 @@
             </div>
           </div>
 
-          <div class="portfolio-item program all" data-aos="fade-up">
+          <div class="portfolio-item program all">
             <div class="portfolio-card">
-              <img src="images/8puzzleshow.gif" alt="8 Puzzle AI" />
+              <img
+                src="images/8puzzleshow.gif"
+                alt="8 Puzzle AI"
+                style="object-fit: contain"
+              />
               <div class="portfolio-content">
-                <h4>8 Puzzle AI</h4>
+                <h3>8 Puzzle AI</h3>
                 <div class="tags">
                   <span class="tag">Python</span>
                   <span class="tag">Program</span>
@@ -264,11 +265,11 @@
             </div>
           </div>
 
-          <div class="portfolio-item game all" data-aos="fade-up">
+          <div class="portfolio-item game all">
             <div class="portfolio-card">
               <img src="images/firstplatformer.gif" alt="First Platformer" />
               <div class="portfolio-content">
-                <h4>First Platformer</h4>
+                <h3>First Platformer</h3>
                 <div class="tags">
                   <span class="tag">GDScript</span>
                   <span class="tag">Godot</span>
@@ -279,7 +280,7 @@
             </div>
           </div>
 
-          <div class="portfolio-item blockchain all" data-aos="fade-up">
+          <div class="portfolio-item blockchain all">
             <div class="portfolio-card">
               <img src="images/blockchain.png" alt="Decentralized Identity" />
               <div class="portfolio-content">
@@ -311,7 +312,7 @@
         </div>
 
         <div class="contact-container">
-          <div class="contact-info" data-aos="slide-right">
+          <div class="contact-info">
             <div class="info-item">
               <i class="fas fa-map-marker-alt"></i>
               <div class="info-content">
@@ -343,12 +344,13 @@
             </div>
           </div>
 
-          <div class="contact-form" data-aos="slide-left">
-            <form>
+          <div class="contact-form">
+            <form id="contact-form">
               <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
+                  id="contact-name"
                   placeholder="Name"
                   required
                 />
@@ -357,6 +359,7 @@
                 <input
                   type="email"
                   class="form-control"
+                  id="contact-email"
                   placeholder="E-mail"
                   required
                 />
@@ -365,12 +368,14 @@
                 <input
                   type="text"
                   class="form-control"
+                  id="contact-phone"
                   placeholder="Mobile No."
                 />
               </div>
               <div class="form-group">
                 <textarea
                   class="form-control"
+                  id="contact-message"
                   placeholder="Message"
                   rows="5"
                   required
@@ -382,6 +387,89 @@
         </div>
       </div>
     </section>
+
+    <!-- Service Modals -->
+    <div class="modal" id="game-dev-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Game Development</h3>
+        <div class="modal-body">
+          <p>
+            I specialize in creating 2D and 3D games using the Godot Engine. My
+            game development process includes:
+          </p>
+          <ul>
+            <li>Building game mechanics and logic using GDScript</li>
+            <li>Creating 3D models and environments with Blender</li>
+            <li>Implementing physics-based gameplay and interactions</li>
+            <li>Designing intuitive user interfaces and control systems</li>
+          </ul>
+          <p>
+            I'm constantly expanding my knowledge in game development by
+            experimenting with procedural generation and AI-driven NPCs.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="ml-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Machine Learning Models</h3>
+        <div class="modal-body">
+          <p>
+            As an AI and ML enthusiast, I work on developing various machine
+            learning solutions:
+          </p>
+          <ul>
+            <li>Building and fine-tuning Large Language Models</li>
+            <li>
+              Creating classification and regression models for data analysis
+            </li>
+            <li>Implementing using TensorFlow and PyTorch</li>
+            <li>Exploring reinforcement learning for game AI</li>
+          </ul>
+          <p>
+            I've completed industry-recognized certifications in machine
+            learning and continue to expand my knowledge through personal
+            projects and research. here's link to my certification
+          </p>
+          <p>
+            <a
+              href="https://coursera.org/share/e9817746b5845c0f8b1d85ba405988f4"
+              >MACHINE LEARNING SPECIALIZATION CERTIFICATE</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="web-dev-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Web Development and Design</h3>
+        <div class="modal-body">
+          <p>
+            I can develop responsive and interactive web applications using
+            HTML,CSS and JavaScript
+          </p>
+
+          <p>
+            Recent projects include a chess website and contributions to
+            blockchain-based web applications that leverage decentralized
+            technologies.
+          </p>
+          <p>
+            I have a knack for 2D and 3D animation as well! Here's a link to my
+            previous work
+          </p>
+          <a
+            href="https://drive.google.com/drive/folders/1k-9QhENLlQLkKomqk6g1r_r4j1_Xxn_a"
+            >GDRIVE LINK</a
+          >
+        </div>
+      </div>
+    </div>
 
     <!-- Back to Top Button -->
     <button type="button" id="back-to-top">
@@ -405,33 +493,25 @@
         </div>
 
         <div class="social-links">
-          <a href="#" class="social-btn dribble">
-            <i class="fab fa-dribbble"></i>
+          <a href="https://instagram.com/_danny.exe_/" class="social-btn">
+            <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="social-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
+          <a href="linkedin.com/in/danny-joseph-99742228b/" class="social-btn">
+            <i class="fab fa-linkedin"></i>
           </a>
-          <a href="#" class="social-btn behance">
-            <i class="fab fa-behance"></i>
+          <a
+            href="https://www.youtube.com/@dannynobyjoseph1659"
+            class="social-btn"
+          >
+            <i class="fab fa-youtube"></i>
           </a>
         </div>
 
         <hr />
-        <p>Made with Love -Danny</p>
+        <p>Danny's Portfolio</p>
       </div>
     </footer>
 
-    <!-- AOS Animation Library -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      // Initialize AOS animation library
-      AOS.init({
-        duration: 1000,
-        offset: 50,
-      });
-    </script>
-
-    <!-- Custom JavaScript -->
     <script src="js/script.js"></script>
   </body>
 </html>

@@ -13,30 +13,32 @@ document.addEventListener("DOMContentLoaded", function () {
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      e.preventDefault();
+      if (!this.getAttribute("data-modal")) {
+        e.preventDefault();
 
-      const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
+        const targetId = this.getAttribute("href");
+        const targetElement = document.querySelector(targetId);
 
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: "smooth",
-        });
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: "smooth",
+          });
 
-        // Close mobile menu if open
-        if (navMenu.classList.contains("active")) {
-          navMenu.classList.remove("active");
+          // Close mobile menu if open
+          if (navMenu.classList.contains("active")) {
+            navMenu.classList.remove("active");
+          }
         }
       }
     });
   });
 
   // Skill Progress Animation
-  animateProgress("python-progress", 90, "#fca61f");
-  animateProgress("javascript-progress", 75, "#6f34fe");
-  animateProgress("cpp-progress", 80, "#20c997");
-  animateProgress("java-progress", 30, "#3f396d");
+  animateProgress("python-progress", 40, "#fca61f");
+  animateProgress("javascript-progress", 20, "#6f34fe");
+  animateProgress("cpp-progress", 30, "#20c997");
+  animateProgress("java-progress", 10, "#3f396d");
 
   // Portfolio filtering
   const filterBtns = document.querySelectorAll(".filter-btn");
@@ -85,17 +87,81 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Sticky navbar functionality
-  const navbar = document.getElementById("navbar");
-  const sticky = navbar.offsetTop;
+  // Modal functionality
+  const modalLinks = document.querySelectorAll("[data-modal]");
+  const modals = document.querySelectorAll(".modal");
+  const closeButtons = document.querySelectorAll(".close-modal");
 
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > sticky) {
-      navbar.classList.add("sticky");
-    } else {
-      navbar.classList.remove("sticky");
+  // Open modal when clicking on read more links
+  modalLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const modalId = this.getAttribute("data-modal");
+      const modal = document.getElementById(modalId);
+
+      if (modal) {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+      }
+    });
+  });
+
+  // Close modal when clicking on close button
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const modal = this.closest(".modal");
+      modal.style.display = "none";
+      document.body.style.overflow = "auto"; // Enable scrolling again
+    });
+  });
+
+  // Close modal when clicking outside the modal content
+  window.addEventListener("click", function (e) {
+    modals.forEach((modal) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Enable scrolling again
+      }
+    });
+  });
+
+  // Close modal when pressing ESC key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      modals.forEach((modal) => {
+        if (modal.style.display === "block") {
+          modal.style.display = "none";
+          document.body.style.overflow = "auto"; // Enable scrolling again
+        }
+      });
     }
   });
+
+  // Form validation and submission
+  const contactForm = document.querySelector(".contact-form form");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent the default form submission
+
+      // Validate form inputs
+      const nameInput = contactForm.querySelector('input[placeholder="Name"]');
+      const emailInput = contactForm.querySelector(
+        'input[placeholder="E-mail"]'
+      );
+      const messageInput = contactForm.querySelector("textarea");
+
+      // Simple validation
+      if (validateForm(nameInput, emailInput, messageInput)) {
+        // If validation passes
+        alert("Form submitted successfully! Thank you for your message.");
+        contactForm.reset(); // Clear the form
+      } else {
+        // If validation fails
+        alert("Please enter valid details in all required fields.");
+      }
+    });
+  }
 });
 
 // Function to animate skill progress
@@ -119,4 +185,36 @@ function animateProgress(elementId, endValue, color) {
       clearInterval(progress);
     }
   }, 30);
+}
+
+// Form validation function
+function validateForm(nameInput, emailInput, messageInput) {
+  console.log("Name:", nameInput.value);
+  console.log("Email:", emailInput.value);
+  console.log("Message:", messageInput.value);
+
+  // Check if name is valid
+  if (!nameInput.value || nameInput.value.trim() === "") {
+    console.log("Name validation failed");
+    nameInput.focus();
+    return false;
+  }
+
+  // Check email
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailInput.value || !emailPattern.test(emailInput.value)) {
+    console.log("Email validation failed");
+    emailInput.focus();
+    return false;
+  }
+
+  // Check message
+  if (!messageInput.value || messageInput.value.trim() === "") {
+    console.log("Message validation failed");
+    messageInput.focus();
+    return false;
+  }
+
+  console.log("All validations passed");
+  return true;
 }
