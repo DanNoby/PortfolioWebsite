@@ -17,6 +17,53 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <style>
+      /* Fix for typewriter animation to prevent content jumping */
+      .typewriter {
+        height: 36px; /* Adjust this based on your text size */
+        margin-bottom: 25px;
+        display: block;
+        position: relative;
+      }
+
+      #type-text {
+        position: relative;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+        min-height: 36px; /* Same as parent height */
+        display: inline-block;
+      }
+
+      #type-text::after {
+        content: "|";
+        position: absolute;
+        right: -8px;
+        color: var(--primary-color);
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Responsive adjustment for the typewriter */
+      @media (max-width: 576px) {
+        .typewriter {
+          height: 30px;
+        }
+        #type-text {
+          font-size: 1.3rem;
+          min-height: 30px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation -->
@@ -34,7 +81,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
         </ul>
-        <button class="contact-btn">Contact</button>
+        <a href="#contact"><button class="contact-btn">Contact</button></a>
       </div>
     </nav>
 
@@ -56,12 +103,11 @@
             </p>
             <div class="home-buttons">
               <a href="#service" class="btn primary-btn">View Portfolio</a>
-              <a href="#contact" class="btn outline-btn">Contact Me</a>
             </div>
           </div>
           <div class="home-image">
             <div class="image-container">
-              <img src="images/banner-01.JPG" alt="Profile Image" />
+              <img src="src/banner-01.JPG" alt="Profile Image" />
               <div class="image-shape"></div>
             </div>
           </div>
@@ -124,13 +170,13 @@
 
           <div class="service-card" data-aos="fade-up">
             <div class="service-icon">
-              <i class="fas fa-code"></i>
+              <i class="fas fa-palette"></i>
             </div>
             <div class="service-content">
-              <h3>Web Development</h3>
+              <h3>Digital Art</h3>
               <p>
-                Creating responsive, modern websites using HTML, CSS,
-                JavaScript, React, and Node.js.
+                2D and 3D animation using Blender and FlipaClip. Photo and video
+                editing with adobe suite
               </p>
               <a
                 href="#"
@@ -283,7 +329,7 @@
           <div class="portfolio-item game all" data-aos="fade-up">
             <div class="portfolio-card">
               <div class="portfolio-image">
-                <img src="images/octorythm.gif" alt="OctoRythm Game" />
+                <img src="src/octorythm.gif" alt="OctoRythm Game" />
                 <div class="portfolio-overlay">
                   <a
                     href="https://github.com/bawling-hackhub/hackhub-game"
@@ -299,6 +345,10 @@
                   <span class="tag">Godot</span>
                   <span class="tag">Blender</span>
                 </div>
+                <p class="project-description">
+                  A rhythm based First Person Shooter where enemy vulnerability
+                  is timed to high points in the music.
+                </p>
                 <a
                   href="https://github.com/bawling-hackhub/hackhub-game"
                   class="portfolio-link"
@@ -311,7 +361,7 @@
           <div class="portfolio-item website all" data-aos="fade-up">
             <div class="portfolio-card">
               <div class="portfolio-image">
-                <img src="images/chess.gif" alt="Chess website" />
+                <img src="src/chess.gif" alt="Chess website" />
                 <div class="portfolio-overlay">
                   <a
                     href="https://github.com/DanNoby/JsChess"
@@ -326,6 +376,10 @@
                   <span class="tag">HTML & CSS</span>
                   <span class="tag">JavaScript</span>
                 </div>
+                <p class="project-description">
+                  An interactive website where two players take turn to play
+                  chess
+                </p>
                 <a
                   href="https://github.com/DanNoby/JsChess"
                   class="portfolio-link"
@@ -339,7 +393,7 @@
             <div class="portfolio-card">
               <div class="portfolio-image">
                 <img
-                  src="images/nxnmaze.gif"
+                  src="src/nxnmaze.gif"
                   alt="NxN maze"
                   style="object-fit: contain"
                 />
@@ -357,6 +411,10 @@
                   <span class="tag">C++</span>
                   <span class="tag">Python</span>
                 </div>
+                <p class="project-description">
+                  A procedural maze generator on given input size, and solves it
+                  with GBFS, DFS and BFS
+                </p>
                 <a
                   href="https://github.com/DanNoby/Puzzles/blob/main/NxNmaze.cpp"
                   class="portfolio-link"
@@ -370,7 +428,7 @@
             <div class="portfolio-card">
               <div class="portfolio-image">
                 <img
-                  src="images/8puzzleshow.gif"
+                  src="src/8puzzleshow.gif"
                   alt="8 Puzzle AI"
                   style="object-fit: contain"
                 />
@@ -388,6 +446,10 @@
                   <span class="tag">Python</span>
                   <span class="tag">AI Algorithm</span>
                 </div>
+                <p class="project-description">
+                  Solves the 8 puzzle problem using A* algorithm with manhattan
+                  distance heuristic
+                </p>
                 <a
                   href="https://github.com/DanNoby/Puzzles/blob/main/8puzzle.py"
                   class="portfolio-link"
@@ -400,7 +462,7 @@
           <div class="portfolio-item game all" data-aos="fade-up">
             <div class="portfolio-card">
               <div class="portfolio-image">
-                <img src="images/firstplatformer.gif" alt="First Platformer" />
+                <img src="src/firstplatformer.gif" alt="First Platformer" />
                 <div class="portfolio-overlay">
                   <a href="#" class="view-project"
                     ><i class="fas fa-external-link-alt"></i
@@ -413,6 +475,10 @@
                   <span class="tag">GDScript</span>
                   <span class="tag">Godot</span>
                 </div>
+                <p class="project-description">
+                  A simple platformer game with basic mechanics and controls
+                  where player collects coins and reaches end of level
+                </p>
                 <a href="#" class="portfolio-link"
                   >View Project <i class="fas fa-arrow-right"></i
                 ></a>
@@ -423,7 +489,7 @@
           <div class="portfolio-item blockchain all" data-aos="fade-up">
             <div class="portfolio-card">
               <div class="portfolio-image">
-                <img src="images/blockchain.png" alt="Decentralized Identity" />
+                <img src="src/blockchain.png" alt="Decentralized Identity" />
                 <div class="portfolio-overlay">
                   <a
                     href="https://github.com/DanNoby/Decentralized-Self-Identity-Platform"
@@ -439,6 +505,11 @@
                   <span class="tag">JavaScript</span>
                   <span class="tag">Blockchain</span>
                 </div>
+                <p class="project-description">
+                  A blockchain-based platform for secure self-sovereign identity
+                  management. Utilizes smart contracts to ensure data integrity
+                  and user control over personal information.
+                </p>
                 <a
                   href="https://github.com/DanNoby/Decentralized-Self-Identity-Platform"
                   class="portfolio-link"
@@ -575,11 +646,6 @@
             <li>Designing intuitive user interfaces and control systems</li>
           </ul>
           <p>
-            My current focus is on developing rhythm-based games like OctoRythm
-            and platformers that combine engaging gameplay with interesting
-            narratives.
-          </p>
-          <p>
             I'm constantly expanding my knowledge in game development by
             experimenting with procedural generation and AI-driven NPCs.
           </p>
@@ -598,12 +664,6 @@
           </p>
           <ul>
             <li>Building and fine-tuning Large Language Models (LLMs)</li>
-            <li>
-              Creating classification and regression models for data analysis
-            </li>
-            <li>
-              Implementing computer vision systems using TensorFlow and PyTorch
-            </li>
             <li>Exploring reinforcement learning for game AI</li>
           </ul>
           <p>
@@ -615,6 +675,12 @@
             Currently, I'm exploring the integration of LLMs in game development
             to create more dynamic and interactive gameplay experiences.
           </p>
+          <p>
+            <a
+              href="https://coursera.org/share/e9817746b5845c0f8b1d85ba405988f4"
+              >ML SPECIALIZATION CERTIFICATE</a
+            >
+          </p>
         </div>
       </div>
     </div>
@@ -622,27 +688,22 @@
     <div class="modal" id="web-dev-modal">
       <div class="modal-content">
         <span class="close-modal">&times;</span>
-        <h3>Web Development</h3>
+        <h3>Digital Art</h3>
         <div class="modal-body">
           <p>
-            I develop responsive and interactive web applications using modern
-            technologies:
-          </p>
-          <ul>
-            <li>Front-end development using HTML, CSS, and JavaScript</li>
-            <li>Building dynamic user interfaces with React.js</li>
-            <li>Server-side development with Node.js</li>
-            <li>Working with databases including MongoDB and MySQL</li>
-          </ul>
-          <p>
-            My web development philosophy focuses on creating clean, efficient,
-            and user-friendly designs that prioritize accessibility and
-            performance.
+            I create captivating digital art and animations using professional
+            tools such as adobe suite and blender
           </p>
           <p>
-            Recent projects include a chess website and contributions to
-            blockchain-based web applications that leverage decentralized
-            technologies.
+            My digital 2D art consists of frame-byframe animations, character
+            designs, adn concept art using FlipaClip and I do 3D modelling and
+            animations using Blender
+          </p>
+          <p>
+            <a
+              href="https://drive.google.com/drive/folders/1k-9QhENLlQLkKomqk6g1r_r4j1_Xxn_a?usp=sharing"
+              >GDRIVE LINK</a
+            >
           </p>
         </div>
       </div>
