@@ -41,7 +41,7 @@ plt.show()
 # Glass Classification with Decision Tree (Entropy and Gini)
 
 # Train/test split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y) 
 
 # Part A: Decision Tree using Entropy
 dt_entropy = DecisionTreeClassifier(criterion='entropy', random_state=42)
