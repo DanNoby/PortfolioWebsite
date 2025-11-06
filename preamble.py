@@ -86,7 +86,18 @@ labels = model.fit_predict(X)
 model = DBSCAN(eps=0.5, min_samples=5)
 labels = model.fit_predict(X)
 model = AgglomerativeClustering(n_clusters=3, linkage='ward')
-labels = model.fit_predict(X)
+labels = model.fit_predict(X) 
+import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+# Assume X is your feature matrix | Dendogram
+linked = linkage(X, method='ward')   # or 'complete', 'average', 'single'
+plt.figure(figsize=(8,5))
+dendrogram(linked)
+plt.title("Hierarchical Clustering Dendrogram")
+plt.xlabel("Samples")
+plt.ylabel("Distance")
+plt.show()
 
 #ENSEMBLES
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
