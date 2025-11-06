@@ -33,9 +33,6 @@ plt.show()
 
 
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-
-# Data Preprocessing for Mixed Data
-
 # Numerical features
 num_features = ['energy', 'tempo', 'danceability', 'loudness', 'liveness', 'valence', 'speechiness']
 
