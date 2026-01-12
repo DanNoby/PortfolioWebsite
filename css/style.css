@@ -290,7 +290,7 @@ a {
   display: block;
   position: relative;
   z-index: 1;
-  transform: translateY(35px) translateX(-21px);
+  transform: translateY(25px) translateX(-7px);
 }
 
 /* Sections */
@@ -593,20 +593,89 @@ footer {
 
 /* Mobile */
 @media (max-width: 768px) {
+  /* Typography scaling */
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  /* Container padding */
+  .container {
+    width: 95%;
+    padding: 0 15px;
+  }
+
+  /* Home section */
+  .home-section {
+    padding: 80px 0 60px;
+    min-height: auto;
+  }
+
   .home-content {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 40px;
+  }
+
+  .home-text {
+    order: 2;
+  }
+
+  .home-image {
+    order: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .home-image .image-container {
+    max-width: 280px;
+  }
+
+  .home-image img {
+    transform: translateY(20px) translateX(0px);
+  }
+
+  .home-image .image-shape {
+    left: -5%;
+    width: 110%;
+  }
+
+  .home-image .image-shape::before {
+    top: 8px;
+    left: 8px;
+  }
+
+  .home-image .image-shape::after {
+    top: 16px;
+    left: 16px;
   }
 
   .home-buttons {
     justify-content: center;
   }
 
-  .skills-container,
-  .contact-container {
-    grid-template-columns: 1fr;
+  /* Sections */
+  section {
+    padding: 60px 0;
   }
 
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+  /* Navigation */
   .menu-toggle {
     display: flex;
   }
@@ -627,6 +696,195 @@ footer {
 
   .nav-menu.active {
     display: flex;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    padding: 4px 12px;
+  }
+
+  /* Filter buttons */
+  .filter-buttons {
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .filter-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Portfolio */
+  .portfolio-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .portfolio-card {
+    box-shadow: 5px 5px 0 var(--border-color);
+  }
+
+  .portfolio-image {
+    height: 200px;
+  }
+
+  .portfolio-content {
+    padding: 15px;
+  }
+
+  .portfolio-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+  }
+
+  .tags .tag {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  /* Research/Papers */
+  .research-section {
+    padding-top: 30px;
+    margin-top: 30px;
+  }
+
+  .research-container {
+    gap: 20px;
+  }
+
+  .research-card {
+    padding: 15px;
+  }
+
+  /* Contact */
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .info-item {
+    padding: 15px;
+    gap: 15px;
+    box-shadow: 4px 4px 0 var(--border-color);
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .info-content {
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .info-content p {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+
+  .info-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .contact-form .form-control {
+    padding: 12px;
+  }
+
+  /* Skills */
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  /* Footer */
+  footer {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 40px 15px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    margin: 5px 10px;
+    font-size: 0.9rem;
+  }
+
+  .social-btn {
+    width: 45px;
+    height: 45px;
+    margin: 0 8px;
+  }
+
+  /* Modal */
+  .modal-content {
+    width: 95%;
+    margin: 5% auto;
+    padding: 25px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .home-section {
+    padding: 60px 0 40px;
+  }
+
+  .home-image .image-container {
+    max-width: 220px;
+  }
+
+  .home-image img {
+    transform: translateY(18px) translateX(2px);
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-btn {
+    width: 80%;
+    text-align: center;
+  }
+
+  .info-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .info-icon {
+    margin-bottom: 5px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-links a {
+    margin: 0;
   }
 }
 
