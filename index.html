@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <!-- Font Awesome for icons -->
@@ -77,11 +77,10 @@
         </div>
         <ul class="nav-menu">
           <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#service">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#papers">Papers</a></li>
+          <li><a href="#portfolio">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact"><button class="contact-btn">Contact</button></a>
       </div>
     </nav>
 
@@ -90,11 +89,7 @@
       <div class="container">
         <div class="home-content">
           <div class="home-text">
-            <span class="greeting">👋 Hello, I'm</span>
             <h1 class="name">Danny Noby Joseph</h1>
-            <div class="typewriter">
-              <span id="type-text">Game Developer & ML Engineer</span>
-            </div>
             <p>
               Sophomore at Vellore Institute of Technology, Chennai pursuing
               Computer Science with a specialization in AI & Machine Learning.
@@ -102,12 +97,12 @@
               and building cutting-edge LLM projects.
             </p>
             <div class="home-buttons">
-              <a href="#service" class="btn primary-btn">View Portfolio</a>
+              <a href="#portfolio" class="btn primary-btn">View Projects</a>
             </div>
           </div>
           <div class="home-image">
             <div class="image-container">
-              <img src="src/banner-01.JPG" alt="Profile Image" />
+              <img src="src/banner.png" alt="Profile Image" />
               <div class="image-shape"></div>
             </div>
           </div>
@@ -120,188 +115,31 @@
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="service" class="service-section">
+    <!-- Papers Section -->
+    <section id="papers" class="research-section">
       <div class="container">
         <div class="section-heading">
-          <span class="subtitle">My Expertise</span>
-          <h2>Services I Offer</h2>
+          <h2>Papers</h2>
         </div>
-        <div class="services-container">
-          <div class="service-card" data-aos="fade-up">
-            <div class="service-icon">
-              <i class="fas fa-gamepad"></i>
+        <div class="research-container">
+          <div class="research-card">
+            <div class="research-image">
+              <img
+                src="https://placehold.co/100x100/000/FFF?text=Draft"
+                alt="Draft Icon"
+              />
             </div>
-            <div class="service-content">
-              <h3>Game Development</h3>
-              <p>
-                Creating engaging 2D and 3D games using Godot Engine, with
-                custom models and environments built in Blender.
-              </p>
-              <a
-                href="#"
-                class="service-link"
-                data-toggle="modal"
-                data-target="game-dev-modal"
-                >Learn More <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="service-card" data-aos="fade-up">
-            <div class="service-icon">
-              <i class="fas fa-brain"></i>
-            </div>
-            <div class="service-content">
-              <h3>Machine Learning</h3>
-              <p>
-                Developing advanced ML models with a focus on LLMs, computer
-                vision, and intelligent systems.
-              </p>
-              <a
-                href="#"
-                class="service-link"
-                data-toggle="modal"
-                data-target="ml-modal"
-                >Learn More <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="service-card" data-aos="fade-up">
-            <div class="service-icon">
-              <i class="fas fa-palette"></i>
-            </div>
-            <div class="service-content">
-              <h3>Digital Art</h3>
-              <p>
-                2D and 3D animation using Blender and FlipaClip. Photo and video
-                editing with adobe suite
-              </p>
-              <a
-                href="#"
-                class="service-link"
-                data-toggle="modal"
-                data-target="web-dev-modal"
-                >Learn More <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="about" class="skills-section">
-      <div class="container">
-        <div class="skills-container">
-          <div class="skill-progress">
-            <div class="progress-row">
-              <div class="progress-card">
-                <div class="circular-progress" id="python-progress">
-                  <svg class="progress-ring" width="150" height="150">
-                    <circle
-                      class="progress-ring-circle"
-                      stroke="#fca61f"
-                      stroke-width="10"
-                      fill="transparent"
-                      r="65"
-                      cx="75"
-                      cy="75"
-                    />
-                  </svg>
-                  <span class="progress-value">90%</span>
-                </div>
-                <span class="skill-name">Python</span>
-              </div>
-
-              <div class="progress-card">
-                <div class="circular-progress" id="javascript-progress">
-                  <svg class="progress-ring" width="150" height="150">
-                    <circle
-                      class="progress-ring-circle"
-                      stroke="#6f34fe"
-                      stroke-width="10"
-                      fill="transparent"
-                      r="65"
-                      cx="75"
-                      cy="75"
-                    />
-                  </svg>
-                  <span class="progress-value">75%</span>
-                </div>
-                <span class="skill-name">JavaScript</span>
-              </div>
-            </div>
-
-            <div class="progress-row">
-              <div class="progress-card">
-                <div class="circular-progress" id="cpp-progress">
-                  <svg class="progress-ring" width="150" height="150">
-                    <circle
-                      class="progress-ring-circle"
-                      stroke="#20c997"
-                      stroke-width="10"
-                      fill="transparent"
-                      r="65"
-                      cx="75"
-                      cy="75"
-                    />
-                  </svg>
-                  <span class="progress-value">80%</span>
-                </div>
-                <span class="skill-name">C++</span>
-              </div>
-
-              <div class="progress-card">
-                <div class="circular-progress" id="java-progress">
-                  <svg class="progress-ring" width="150" height="150">
-                    <circle
-                      class="progress-ring-circle"
-                      stroke="#3f396d"
-                      stroke-width="10"
-                      fill="transparent"
-                      r="65"
-                      cx="75"
-                      cy="75"
-                    />
-                  </svg>
-                  <span class="progress-value">30%</span>
-                </div>
-                <span class="skill-name">Java</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="skill-details">
-            <div class="section-heading">
-              <span class="subtitle">My Skills</span>
-              <h2>Technical Expertise</h2>
-              <p>
-                I specialize in game development using Godot Engine and Blender
-                for 3D modeling. My machine learning stack includes TensorFlow
-                and PyTorch, with a focus on developing innovative AI solutions.
-              </p>
-              <p>
-                I'm also passionate about digital art, using Adobe Creative
-                Suite and Flipaclip for animation and design projects.
-              </p>
-              <div class="skill-tools">
-                <span class="tool-badge">Godot</span>
-                <span class="tool-badge">Blender</span>
-                <span class="tool-badge">TensorFlow</span>
-                <span class="tool-badge">PyTorch</span>
-                <span class="tool-badge">React</span>
-                <span class="tool-badge">Adobe Suite</span>
-              </div>
-              <a
-                href="Resume.pdf"
-                download="DannyNobyResume"
-                class="btn primary-btn"
-              >
-                <i class="fas fa-download"></i> Download CV
-              </a>
-            </div>
+            <h3>Look-Ahead Intelligent Data Augmentation (LAID)</h3>
+            <p>
+              Draft paper of a Comparative Study of Feature-Space Augmentation
+              and End-to-End Fine-Tuning for Low-Resource Sentiment Analysis.
+              Tested against SOTA methods.
+            </p>
+            <a
+              href="https://drive.google.com/drive/folders/1-l4lHhcOZ6V7_TjxfWGPaukYJBieInMn?usp=sharing"
+              class="research-link"
+              >View Draft <i class="fas fa-arrow-right"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -311,8 +149,7 @@
     <section id="portfolio" class="portfolio-section">
       <div class="container">
         <div class="section-heading">
-          <span class="subtitle">Featured Work</span>
-          <h2>Latest Projects</h2>
+          <h2>Projects</h2>
         </div>
 
         <div class="filter-buttons">
@@ -326,6 +163,101 @@
         </div>
 
         <div class="portfolio-container">
+          <div class="portfolio-item game all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="src/gameplay_loop.gif" alt="Dyanomaze" />
+                <div class="portfolio-overlay">
+                  <a href="#" class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Dyanomaze</h3>
+                <div class="tags">
+                  <span class="tag">Godot</span>
+                  <span class="tag">GDScript</span>
+                </div>
+                <p class="project-description">
+                  3D arcade survival game that combines precision platforming
+                  with melee combat, challenging players to navigate a maze of
+                  dynamically shifting pillars. The journey is hammered with
+                  enemy ghosts and a spooky environment with ambient spotlight.
+                </p>
+                <a
+                  href="https://github.com/DanNoby/dyanomaze"
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item program all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="src/termibot_demo.gif" alt="termibot_demo" />
+                <div class="portfolio-overlay">
+                  <a href="#" class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Termibot</h3>
+                <div class="tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Docker</span>
+                  <span class="tag">FastAPI</span>
+                </div>
+                <p class="project-description">
+                  A lightweight, prod-ready chat backend API built using FastAPI
+                  and Docker, designed to accept raw text input and return
+                  plain-text responses. It is deployed on Render with
+                  environment-based configuration and custom domain support
+                </p>
+                <a
+                  href="https://github.com/DanNoby/termibot"
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item website all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="src/journalreplica.png" alt="journal replica" />
+                <div class="portfolio-overlay">
+                  <a
+                    href="https://github.com/DanNoby/Journalreplica"
+                    class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Journal Replica</h3>
+                <div class="tags">
+                  <span class="tag">Swift</span>
+                  <span class="tag">Xcode</span>
+                </div>
+                <p class="project-description">
+                  Recreating the core experience of the iPhone’s Journal app.
+                  Venturing into iOS development using Swift, getting used to
+                  SwiftUI and Xcode
+                </p>
+                <a
+                  href="https://github.com/DanNoby/Journalreplica"
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
           <div class="portfolio-item game all" data-aos="fade-up">
             <div class="portfolio-card">
               <div class="portfolio-image">
@@ -459,33 +391,6 @@
             </div>
           </div>
 
-          <div class="portfolio-item game all" data-aos="fade-up">
-            <div class="portfolio-card">
-              <div class="portfolio-image">
-                <img src="src/firstplatformer.gif" alt="First Platformer" />
-                <div class="portfolio-overlay">
-                  <a href="#" class="view-project"
-                    ><i class="fas fa-external-link-alt"></i
-                  ></a>
-                </div>
-              </div>
-              <div class="portfolio-content">
-                <h3>First Platformer</h3>
-                <div class="tags">
-                  <span class="tag">GDScript</span>
-                  <span class="tag">Godot</span>
-                </div>
-                <p class="project-description">
-                  A simple platformer game with basic mechanics and controls
-                  where player collects coins and reaches end of level
-                </p>
-                <a href="#" class="portfolio-link"
-                  >View Project <i class="fas fa-arrow-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-
           <div class="portfolio-item blockchain all" data-aos="fade-up">
             <div class="portfolio-card">
               <div class="portfolio-image">
@@ -561,16 +466,6 @@
                 <h4>Email</h4>
                 <p>dannynobyj@gmail.com</p>
                 <p>dannynoby.joseph2023@vitstudent.ac.in</p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">
-                <i class="fas fa-globe"></i>
-              </div>
-              <div class="info-content">
-                <h4>Website</h4>
-                <p>dannoby.xyz</p>
               </div>
             </div>
           </div>

@@ -490,10 +490,10 @@ style.textContent = `
     position: fixed;
     bottom: 30px;
     right: 30px;
-    padding: 15px 25px 15px 20px;
+    padding: 20px;
     background: white;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    box-shadow: 8px 8px 0 #000;
+    border: 3px solid #000;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -502,6 +502,7 @@ style.textContent = `
     transition: all 0.3s ease;
     z-index: 9999;
     max-width: 400px;
+    font-family: 'Space Mono', monospace;
   }
   
   .notification.show {
@@ -510,11 +511,11 @@ style.textContent = `
   }
   
   .notification.success {
-    border-left: 4px solid #38b2ac;
+    border-left: 10px solid #00ff00;
   }
   
   .notification.error {
-    border-left: 4px solid #f56565;
+    border-left: 10px solid #ff00ff;
   }
   
   .notification-content {
@@ -525,27 +526,21 @@ style.textContent = `
   
   .notification-content i {
     font-size: 1.4rem;
-  }
-  
-  .notification.success i {
-    color: #38b2ac;
-  }
-  
-  .notification.error i {
-    color: #f56565;
+    color: #000 !important;
   }
   
   .notification-close {
     background: transparent;
     border: none;
-    color: #718096;
+    color: #000;
     cursor: pointer;
     margin-left: 15px;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: bold;
   }
   
   .notification-close:hover {
-    color: #2d3748;
+    color: #ff00ff;
   }
   
   @media (max-width: 576px) {
@@ -559,7 +554,7 @@ style.textContent = `
   
   /* Animation for menu toggle */
   .menu-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(10px) rotate(45deg);
   }
   
   .menu-toggle.active span:nth-child(2) {
@@ -567,7 +562,7 @@ style.textContent = `
   }
   
   .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
   }
   
   /* Animation for modal */
