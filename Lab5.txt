@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int cmp(const void *a, const void *b) { 
+    return strcmp((char*)a, (char*)b); 
+}
+
+int main() {
+    char s[99], l[10], p[20][30], pre[30], *t;
+    int c, i, m, k, f;
+    
+    while(scanf("%s", s) != EOF) {
+        c = 0;
+        t = strtok(s, "->|=");
+        strcpy(l, t);
+        while((t = strtok(0, "->|="))) 
+            strcpy(p[c++], t);
+
+        // Check Left Recursion
+        int rec = 0;
+        for(i = 0; i < c; i++) 
+            if(p[i][0] == l[0]) rec = 1;
+
+        if(rec) {
+            printf("LR:\n%s->", l);
+
+            // Print Beta A'
+            for(i = 0; i < c; i++) {
+                if(p[i][0] != l[0]) {
+                    printf("%s%s'|", p[i], l);
+                }
+            }
+            printf("e\n"); // Print epsilon to terminate beta
+            
+            // Print Alpha A' | e
+            printf("%s'->", l);
+            for(i = 0; i < c; i++) {
+                if(p[i][0] == l[0]) {
+                    printf("%s%s'|", p[i] + 1, l);
+                }
+            }
+            printf("e\n");
+        }
+        else {
+            // Left Factoring
+            qsort(p, c, 30, cmp);
+            
+            // Find common prefix of first two sorted strings
+            m = 0;
+            for(k = 0; p[0][k] && p[1][k] && p[0][k] == p[1][k]; k++);
+            m = k;
+            
+            if(m > 0) {
+                strncpy(pre, p[0], m);
+                pre[m] = 0;
+            }
+            
+            if(m == 0) 
+                printf("No rec/fact\n");
+            else {
+                printf("LF:\n%s->%s%s'", l, pre, l);
+                // Unfactored
+                for(i = 0; i < c; i++)
+                    if(strncmp(p[i], pre, m) == 0)  
+                        printf("|%s", p[i]);
+                
+                // Factored suffixes
+                printf("\n%s'->", l);
+                for(i = 0, f = 0; i < c; i++) 
+                    if(strncmp(p[i], pre, m) != 0) 
+                        printf("%s%s", f++ ? "|" : "", p[i][m] ? p[i] + m : "e");
+                printf("\n");
+            }
+        }
+    }
+    return 0;
+}

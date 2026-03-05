@@ -1,0 +1,97 @@
+int test_regex(char *pattern, char *text) {
+    regex_t r;
+    regcomp(&r, pattern, REG_EXTENDED);
+    int result = !regexec(&r, text, 0, NULL, 0);
+    regfree(&r);
+    return result;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char text[] = "Hello, world! This is tokenization.";
+    char *token = strtok(text, " ,.!");
+    
+    while (token != NULL) {
+        printf("%s\n", token);
+        token = strtok(NULL, " ,.!");
+    }
+    return 0;
+}
+
+
+void classify(char *token) {
+    if (strcmp(token, "int") == 0 || strcmp(token, "float") == 0) 
+        printf("%s -> DATATYPE\n", token);
+    else if (isdigit(token[0])) 
+        printf("%s -> NUMBER\n", token);
+    else if (isalpha(token[0])) 
+        printf("%s -> IDENTIFIER\n", token);
+    else 
+        printf("%s -> OPERATOR/SEPARATOR\n", token);
+}
+
+int main() {
+    char code[] = "int x = 5";
+    char *token = strtok(code, " ");
+    
+    while (token) {
+        classify(token);
+        token = strtok(NULL, " ");
+    }
+    return 0;
+}
+
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+char *keywords[] = {"int", "if", "else", "while", "for", "return"};
+int num_keywords = 6;
+
+int is_keyword(char *token) {
+    for (int i = 0; i < num_keywords; i++) {
+        if (strcmp(token, keywords[i]) == 0) return 1;
+    }
+    return 0;
+}
+
+void tokenize(char *str) {
+    int i = 0;
+    char token[50];
+    
+    while (str[i]) {
+        if (isspace(str[i])) { i++; continue; }
+        
+        // Numbers
+        if (isdigit(str[i])) {
+            int j = 0;
+            while (isdigit(str[i])) token[j++] = str[i++];
+            token[j] = '\0';
+            printf("%s -> NUMBER\n", token);
+        }
+        // Words (keywords/identifiers)  
+        else if (isalpha(str[i])) {
+            int j = 0;
+            while (isalnum(str[i])) token[j++] = str[i++];
+            token[j] = '\0';
+            printf("%s -> %s\n", token, is_keyword(token) ? "KEYWORD" : "IDENTIFIER");
+        }
+        // Operators
+        else if(ispunct(str[i])) {
+            printf("%c -> SPACE\n", str[i]);
+        }
+        else {
+            printf("%c -> OPERATOR\n", str[i]);
+            i++;
+        }
+    }
+}
+
+
+int main() {
+    char code[] = "int x = 5; if (x > 0) return x;";
+    tokenize(code);
+    return 0;
+}
