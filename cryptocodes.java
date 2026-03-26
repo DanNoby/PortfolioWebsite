@@ -213,31 +213,23 @@ public class AES {
 
     // multiply by 2 in GF(2^8)
     static byte xtime(byte b) {
-        int x = b & 0xFF;
-        x <<= 1;
+    int x = b & 0xFF;
+    x <<= 1;
 
-        if ((x & 0x100) != 0) {
-            x ^= 0x11B;
-        }
-
-        return (byte) (x & 0xFF);
+    if ((b & 0x80) != 0) {
+        x ^= 0x1B;
     }
 
+    return (byte)(x & 0xFF);
+}
+
     // general multiplication in GF(2^8)
-    static byte gmul(byte a, int b) {
-        byte result = 0;
-        byte temp = a;
+    static byte gmul2(byte b) {
+        return xtime(b);
+    }
 
-        while (b > 0) {
-            if ((b & 1) != 0) {
-                result ^= temp;
-            }
-
-            temp = xtime(temp);
-            b >>= 1;
-        }
-
-        return result;
+    static byte gmul3(byte b) {
+        return (byte)(xtime(b) ^ b);
     }
 
     // MIX COLUMNS
@@ -250,10 +242,10 @@ public class AES {
             byte s2 = state[2][c];
             byte s3 = state[3][c];
 
-            state[0][c] = (byte)(gmul(s0,2) ^ gmul(s1,3) ^ s2 ^ s3);
-            state[1][c] = (byte)(s0 ^ gmul(s1,2) ^ gmul(s2,3) ^ s3);
-            state[2][c] = (byte)(s0 ^ s1 ^ gmul(s2,2) ^ gmul(s3,3));
-            state[3][c] = (byte)(gmul(s0,3) ^ s1 ^ s2 ^ gmul(s3,2));
+            state[0][c] = (byte)(gmul2(s0) ^ gmul3(s1) ^ s2 ^ s3);
+            state[1][c] = (byte)(s0 ^ gmul2(s1) ^ gmul3(s2) ^ s3);
+            state[2][c] = (byte)(s0 ^ s1 ^ gmul2(s2) ^ gmul3(s3));
+            state[3][c] = (byte)(gmul3(s0) ^ s1 ^ s2 ^ gmul2(s3));
         }
     }
 
