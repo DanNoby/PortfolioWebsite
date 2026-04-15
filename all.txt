@@ -1,0 +1,679 @@
+// Lab 1 Regex 
+#include <stdio.h>
+#include <regex.h>
+int test_regex(char *pattern, char *text) {
+    regex_t r;
+    regcomp(&r, pattern, REG_EXTENDED);
+    int result = !regexec(&r, text, 0, NULL, 0);
+    regfree(&r);
+    return result;
+}
+// in main: test_regex("^[0-9].*c$", "123c"); test_regex("^z.*[0-9]+.*a$", "z1a");
+
+
+// Lab 1.2 Tokenize
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char text[] = "Hello, world! This is tokenization.";
+    char *token = strtok(text, " ,.!");
+    
+    while (token != NULL) {
+        printf("%s\n", token);
+        token = strtok(NULL, " ,.!");
+    }
+    return 0;
+}
+
+
+// Lab 1.3 Tokenize declarative sentence
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+void classify(const char *t) {
+   // Check for specific Data Types
+   if (strcmp(t, "int") == 0)      
+   printf("%s\t\tDatatype (Integer)\n", t);
+  
+   else if (strcmp(t, "float") == 0)
+   printf("%s\t\tDatatype (Floating Point)\n", t);
+  
+   else if (strcmp(t, "char") == 0) 
+   printf("%s\t\tDatatype (Character)\n", t);
+  
+   else if (strcmp(t, "double") == 0)
+   printf("%s\t\tDatatype (Double Precision)\n", t);
+  
+   else if (strcmp(t, "void") == 0) 
+   printf("%s\t\tDatatype (Void)\n", t);
+
+
+   // Constants, Variables, and Special Characters
+   else if (isdigit(t[0]))           
+   printf("%s\t\tConstant\n", t);
+  
+   else if (isalpha(t[0]) || t[0] == '_')
+   printf("%s\t\tVariable/Identifier\n", t);
+  
+   else if (strcmp(t, "=") == 0)    
+   printf("%s\t\tSpecial Character (Operator)\n", t);
+  
+   else if (strcmp(t, ",") == 0 || strcmp(t, ";") == 0)
+   printf("%s\t\tSpecial Character (Separator)\n", t);
+   else printf("%s\t\tUnknown\n", t);
+}
+
+
+void simple_tokenize(char *s) {
+   int i = 0, k = 0;
+   char t[50];
+
+
+   while (s[i] != '\0') {
+       if (isspace(s[i])) {
+           i++;
+           continue;
+       }
+       // Handling single-character delimiters
+       if (strchr(",;=", s[i]) != NULL) {
+           t[0] = s[i];
+           t[1] = '\0';
+           classify(t);
+           i++;
+       }
+
+       // Handling words and numbers
+       else if (isalnum(s[i]) || s[i] == '_' ) {
+           k = 0;
+           while (isalnum(s[i]) || s[i] == '_' || s[i] == '.') {
+               t[k++] = s[i++];
+           }
+           t[k] = '\0';
+           classify(t);
+       }
+       else {
+           i++;
+       }
+   }
+}
+
+
+// Lab 3 Epsilon Closures
+#include <stdio.h>
+#include <string.h>
+#define STATES 20
+#define IP 20
+#define MAX (STATES + 1)
+
+int nfa[STATES][IP][MAX];
+int visited[STATES]; 
+int num_states, num_cols;
+
+void find_closure(int s) {
+    visited[s] = 1;
+    for (int i = 0; nfa[s][0][i] != -1; i++) {
+        int next = nfa[s][0][i];
+        if (next >= 0 && next < STATES && !visited[next]) {
+            find_closure(next);
+        }
+    }
+}
+
+int main() {
+    memset(nfa, -1, sizeof(nfa));
+
+    printf("Enter number of States: ");
+    scanf("%d", &num_states);
+    
+    printf("Enter number of Input Columns (including Epsilon): ");
+    scanf("%d", &num_cols);
+
+    // Input Loop
+    for (int i = 0; i < num_states; i++) {
+        for (int j = 0; j < num_cols; j++) {
+            printf("State %d, IP %d (end with -1): ", i, j);
+            
+            int k = 0, val;
+            while (1) {
+                scanf("%d", &val);
+                nfa[i][j][k++] = val;
+                if (val == -1) break;
+            }
+        }
+    }
+
+    for (int i = 0; i < num_states; i++) {
+        memset(visited, 0, sizeof(visited));
+        find_closure(i);
+
+        printf("State %d: { ", i);
+        for (int j = 0; j < STATES; j++) {
+            if (visited[j]) printf("%d ", j);
+        }
+        printf("}\n");
+    }
+    return 0;
+}
+
+// Lab 4 Lex programs
+
+// Common Declaration Code
+
+%{
+#include <stdio.h>
+#include <string.h>
+
+// Common/near-common variables used across tasks 
+int flag = 0;
+int operators = 0, identifiers = 0, special_chars = 0;
+int wc = 0, lc = 0, cc = 0;
+int loops = 0;
+int line_count = 1;
+
+// Q2 helper tables/functions 
+// Used only by Q2 segment (Verhoeff checksum).
+int d[10][10] = {
+    {0,1,2,3,4,5,6,7,8,9}, {1,2,3,4,0,6,7,8,9,5}, {2,3,4,0,1,7,8,9,5,6},
+    {3,4,0,1,2,8,9,5,6,7}, {4,0,1,2,3,9,5,6,7,8}, {5,9,8,7,6,0,4,3,2,1},
+    {6,5,9,8,7,1,0,4,3,2}, {7,6,5,9,8,2,1,0,4,3}, {8,7,6,5,9,3,2,1,0,4},
+    {9,8,7,6,5,4,3,2,1,0}
+};
+
+int p[8][10] = {
+    {0,1,2,3,4,5,6,7,8,9}, {1,5,7,6,2,8,3,0,9,4}, {5,8,0,3,7,9,6,1,4,2},
+    {8,9,1,6,0,4,3,5,2,7}, {9,4,5,3,1,2,6,8,7,0}, {4,2,8,6,5,7,3,9,0,1},
+    {2,7,9,3,8,0,6,4,1,5}, {7,0,4,6,9,1,3,2,5,8}
+};
+
+int check(char* s) {
+    int i, c = 0, len = strlen(s);
+    for (i = 0; i < len; i++)
+        c = d[c][p[i % 8][s[len - 1 - i] - '0']];
+    return (c == 0);
+}
+%}
+
+//  COMMON DEFINITIONS (Q4 STYLE) 
+OPERATOR    [-+*/%=<>&|!]
+SPECIAL     [(){}\[\];,.:#]
+IDENTIFIER  [a-zA-Z_][a-zA-Z0-9_]* 
+
+%%
+
+// Q1 SEGMENT: Indian Mobile Number Validation                                      
+^(\+91|91|0)?[6-9][0-9]{9}$ {
+    printf("[Q1] Valid Indian Mobile Number: %s\n", yytext);
+}
+
+// Q2 SEGMENT: 12-digit validation + Verhoeff checksum                              
+[0-9]+ {
+    if (yyleng == 12 && yytext[0] >= '2') {
+        if (check(yytext))
+            printf("[Q2] RESULT: VALID\n");
+        else
+            printf("[Q2] RESULT: INVALID (Checksum Failure)\n");
+    } else {
+        printf("[Q2] RESULT: INVALID (Length or Starting Digit)\n");
+    }
+}
+
+// Q3 SEGMENT: Email Validation                                                      
+[a-z0-9_.]+@[a-z]+(\.com|\.in) {
+    flag = 1;
+    printf("[Q3] Valid Email: %s\n", yytext);
+}
+
+//  Q4 SEGMENT: Count operators / identifiers / special chars / lines                
+{IDENTIFIER}    { identifiers++; }
+{OPERATOR}      { operators++; }
+{SPECIAL}       { special_chars++; }
+\n              { line_count++; }
+
+// Q5 SEGMENT: Word / Line / Character Counter                                      
+\n          { lc++; cc++; }
+[ \t]       { cc++; }
+[^\t\n ]+   { wc++; cc += yyleng; }
+
+// Q6 SEGMENT: Loop Detection (ignore comments/strings)                              
+"/*"(.|\n)*"*/"    { /* Ignore multi-line comments */ }
+"//".*             { /* Ignore single-line comments */ }
+\"[^\"]*\"          { /* Ignore string literals */ }
+
+for[^a-zA-Z0-9]    { loops++; printf("[Q6] for-loop detected\n"); }
+while[^a-zA-Z0-9]  { loops++; printf("[Q6] while-loop detected\n"); }
+do[^a-zA-Z0-9]     { /* do ignored as per original file */ }
+
+// SHARED FALLBACK RULES 
+[ \t\n]+           { /* Common whitespace ignore */ }
+.                  { /* Common catch-all ignore */ }
+
+%%
+
+// Common User code
+
+int main() {
+    printf("Enter input and press Ctrl+D to stop:\n");
+
+    yylex();
+
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}
+// Run: lex program.l, gcc lex.yy.c then ./a.out
+
+
+// Lab 5 LR and LF
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+// Helper for qsort
+int cmp(const void *a, const void *b) { 
+    return strcmp((char*)a, (char*)b); 
+}
+
+int main() {
+    char s[100], l, p[20][30];
+    
+    while (scanf("%s", s) != EOF) {
+        int c = 0, rec = 0, m = 0;
+        
+        // 1. Cleaner Parsing: LHS is always a single char
+        char *t = strtok(s, "->|=");
+        l = t[0]; 
+        
+        while ((t = strtok(NULL, "->|="))) {
+            strcpy(p[c], t);
+            if (p[c][0] == l) rec = 1; // Detect Left Recursion
+            c++;
+        }
+
+        if (rec) {
+            printf("LR:\n%c->", l);
+            
+            // Print Main Rule (Betas) - FIXED: No trailing epsilon
+            int first = 1;
+            for (int i = 0; i < c; i++) {
+                if (p[i][0] != l) {
+                    printf("%s%s%c'", first ? "" : "|", p[i], l);
+                    first = 0;
+                }
+            }
+            
+            // Print Prime Rule (Alphas)
+            printf("\n%c'->", l);
+            first = 1;
+            for (int i = 0; i < c; i++) {
+                if (p[i][0] == l) {
+                    printf("%s%s%c'", first ? "" : "|", p[i] + 1, l);
+                    first = 0;
+                }
+            }
+            printf("%se\n", first ? "" : "|"); // Epsilon safely at the end of A'
+            
+        } else {
+            // 2. Left Factoring
+            qsort(p, c, 30, cmp);
+            
+            int max_m = 0;
+            int best_idx = 0; // Tracks which string has the matching prefix
+            
+            // Loop through adjacent pairs to find the longest common prefix
+            for (int i = 0; i < c - 1; i++) {
+                int temp_m = 0;
+                while (p[i][temp_m] && p[i][temp_m] == p[i+1][temp_m]) {
+                    temp_m++;
+                }
+                if (temp_m > max_m) {
+                    max_m = temp_m;
+                    best_idx = i;
+                }
+            }
+            
+            if (max_m == 0) {
+                printf("No rec/fact\n");
+            } else {
+                char pre[30];
+                strncpy(pre, p[best_idx], max_m);
+                pre[max_m] = '\0';
+                
+                printf("LF:\n%c->%s%c'", l, pre, l);
+                
+                // Unfactored rules
+                for (int i = 0; i < c; i++) {
+                    if (strncmp(p[i], pre, max_m) != 0) {
+                        printf("|%s", p[i]);
+                    }
+                }
+                
+                // Factored suffixes
+                printf("\n%c'->", l);
+                int first = 1;
+                for (int i = 0; i < c; i++) {
+                    if (strncmp(p[i], pre, max_m) == 0) {
+                        printf("%s%s", first ? "" : "|", p[i][max_m] ? p[i] + max_m : "e");
+                        first = 0;
+                    }
+                }
+                printf("\n");
+            }
+        }
+    }
+    return 0;
+}
+
+// Lab 6 
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int n;
+char pr[50][20];
+
+// set having characters
+void add(char *set, char c) {
+    if (!strchr(set, c)) { 
+        int len = strlen(set); 
+        set[len] = c; 
+        set[len+1] = '\0'; 
+    }
+}
+
+void first(char X, char *res) {
+    // Terminal
+    if (!isupper(X)) { add(res, X); return; }
+    
+    // Non-Terminal
+    for (int i = 0; i < n; i++) {
+        if (pr[i][0] == X) {
+            if (pr[i][1] == '#') add(res, '#');
+            else {
+                int j = 1, has_eps = 1;
+                while (pr[i][j] && has_eps) {
+                    char temp[20] = ""; has_eps = 0;
+                    first(pr[i][j], temp);
+                    for (int k = 0; temp[k]; k++) {
+                        if (temp[k] != '#') add(res, temp[k]);
+                        else has_eps = 1; // Epsilon found, check next symbol
+                    }
+                    j++;
+                }
+                if (has_eps) add(res, '#');
+            }
+        }
+    }
+}
+
+void follow(char X, char *res) {
+    // Start symbol gets $
+    if (X == pr[0][0]) add(res, '$'); 
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; pr[i][j]; j++) {
+            if (pr[i][j] == X) {
+                char next = pr[i][j+1];
+                
+                if (next == '\0') continue; // no tail backs
+                
+                if (!isupper(next)) {
+                    // Followed by Terminal
+                    add(res, next); 
+                } else {
+                    // Followed by Non-Terminal (ignoring epsilon)
+                    char temp[20] = "";
+                    first(next, temp); 
+                    for (int k = 0; temp[k]; k++) {
+                        if (temp[k] != '#') add(res, temp[k]);
+                    }
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    printf("Number of rules: "); 
+    if (scanf("%d", &n) != 1) return 1;
+
+    printf("Enter rules:\n");
+    for (int i = 0; i < n; i++) scanf("%s", pr[i]);
+
+    // Gather unique Non-Terminals
+    char nts[26] = "";
+    for (int i = 0; i < n; i++) add(nts, pr[i][0]);
+
+    printf("\n--- FIRST & FOLLOW SETS ---\n");
+    for (int i = 0; nts[i]; i++) {
+        char f[20] = ""; 
+        first(nts[i], f);
+        printf("FIRST(%c)  = { ", nts[i]);
+        for (int j = 0; f[j]; j++) printf("%c ", f[j]);
+        printf("}\n");
+    }
+    
+    printf("\n");
+    for (int i = 0; nts[i]; i++) {
+        char fol[20] = ""; 
+        follow(nts[i], fol);
+        printf("FOLLOW(%c) = { ", nts[i]);
+        for (int j = 0; fol[j]; j++) printf("%c ", fol[j]);
+        printf("}\n");
+    }
+    return 0;
+}
+
+// Lab 8 : Shift Reduce Parser
+#include <stdio.h>
+#include <string.h>
+
+char lhs[20], rhs[20][20], stack[100] = "$", input[100];
+int n;
+
+int main() {
+    printf("Number of productions: ");
+    if (scanf("%d", &n) != 1) return 1;
+    
+    printf("Enter productions:\n");
+    for (int i = 0; i < n; i++) {
+        char temp[30];
+        scanf("%s", temp);
+        lhs[i] = temp[0];            
+        strcpy(rhs[i], temp + 1);  // The Adjustment: RHS starts immediately after LHS   
+    }
+
+    printf("Enter input: ");
+    scanf("%s", input);
+    strcat(input, "$"); 
+
+    char *in = input; // Pointer to smoothly track the remaining input
+    printf("\n%-15s %-15s %s\n", "STACK", "INPUT", "ACTION");
+
+    while (1) {
+        printf("%-15s %-15s ", stack, in);
+        
+        int slen = strlen(stack);
+        int reduced = 0;
+
+        // 1. Try to REDUCE
+        for (int i = 0; i < n; i++) {
+            int rlen = strlen(rhs[i]);
+            
+            if (slen >= rlen && strcmp(stack + slen - rlen, rhs[i]) == 0) {
+                stack[slen - rlen] = lhs[i];   
+                stack[slen - rlen + 1] = '\0'; 
+                
+                printf("Reduce %c->%s\n", lhs[i], rhs[i]);
+                reduced = 1;
+                break;
+            }
+        }
+        if (reduced) continue;
+
+        // 2. Try to ACCEPT
+        if (slen == 2 && stack[1] == lhs[0] && *in == '$') {
+            printf("Accept\n");
+            break;
+        }
+
+        // 3. Try to SHIFT
+        if (*in != '$') {
+            stack[slen] = *in++; // Copy char to stack, then advance input pointer
+            stack[slen + 1] = '\0';
+            
+            printf("Shift\n");
+            continue;
+        }
+
+        // 4. REJECT
+        printf("Reject\n");
+        break;
+    }
+    return 0;
+}
+
+// Lab 9 Generating 3AC
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Helper to determine operator precedence
+int prec(char c) {
+    if (c == '~') return 3;
+    if (c == '*' || c == '/') return 2;
+    if (c == '+' || c == '-') return 1;
+    return 0;
+}
+
+int main() {
+    printf("Danny Noby Joseph; 23BAI1227\n");
+
+    char input[100], postfix[100], stack[100][10], opStack[100];
+    int p = 0, topStr = -1, topOp = -1, t = 1;
+
+    printf("Enter expression: ");
+    scanf("%s", input);
+
+    // splitting LHS and RHS
+    char *eq = strchr(input, '=');
+    if (!eq) {
+        printf("Invalid format. Missing '='.\n");
+        return 1;
+    }
+    *eq = '\0'; 
+    char *lhs = input;
+    char *rhs = eq + 1;
+
+    // RHS : Infix to Postfix
+    for (int i = 0; rhs[i]; i++) {
+        if (isalnum(rhs[i])) {
+            postfix[p++] = rhs[i];
+        } else if (rhs[i] == '(') {
+            opStack[++topOp] = rhs[i];
+        } else if (rhs[i] == ')') {
+            while (topOp >= 0 && opStack[topOp] != '(')
+                postfix[p++] = opStack[topOp--];
+            topOp--; // Pop the '('
+        } else {
+            char op = rhs[i];
+            if (op == '-' && (i == 0 || strchr("+-*/(", rhs[i-1]))) {
+                op = '~'; 
+            }     
+            while (topOp >= 0 && prec(opStack[topOp]) >= prec(op)) {
+                if (op == '~' && opStack[topOp] == '~') break; // Unary is right-associative
+                postfix[p++] = opStack[topOp--];
+            }
+            opStack[++topOp] = op;
+        }
+    }
+    while (topOp >= 0) postfix[p++] = opStack[topOp--];
+    postfix[p] = '\0';
+
+    // postfix evaluation to generate 3AC
+    printf("\nThree-Address Code:\n");
+    for (int i = 0; postfix[i]; i++) {
+        if (isalnum(postfix[i])) {
+            sprintf(stack[++topStr], "%c", postfix[i]);
+        } else if (postfix[i] == '~') { 
+            char op1[10]; 
+            strcpy(op1, stack[topStr--]);
+            printf("t%d = -%s\n", t, op1);
+            sprintf(stack[++topStr], "t%d", t++);
+            
+        } else {
+            char op2[10], op1[10];
+            strcpy(op2, stack[topStr--]); 
+            strcpy(op1, stack[topStr--]); 
+            
+            printf("t%d = %s%c%s\n", t, op1, postfix[i], op2);
+            
+            // Push new temp variable
+            sprintf(stack[++topStr], "t%d", t++);
+        }
+    }
+    
+    // Print the final 
+    printf("%s = %s\n", lhs, stack[topStr]);
+
+    return 0;
+}
+
+// Lab 10: Leaders from 3AC
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int n;
+    char line[100];
+    int isLeader[100] = {0};
+
+    printf("Enter number of lines: ");
+    if (scanf("%d", &n) != 1) return 1;
+
+    isLeader[1] = 1; // Rule 1: The first instruction is always a leader
+
+    printf("Enter the %d lines of TAC:\n", n);
+    for (int i = 1; i <= n; i++) {
+        // Read the entire line (skipping leading whitespace/newlines)
+        scanf(" %[^\n]", line);
+
+        char *goto_ptr = strstr(line, "goto");
+        if (goto_ptr != NULL) {
+            int target;
+            
+            // Extract the target line number immediately after "goto "
+            if (sscanf(goto_ptr + 4, "%d", &target) == 1) {
+                isLeader[target] = 1; // Rule 2: Target of a goto is a leader
+            }
+            
+            // Rule 3: The instruction immediately following a goto is a leader
+            if (i + 1 <= n) {
+                isLeader[i + 1] = 1;
+            }
+        }
+    }
+
+    // Print the results
+    printf("\nLeaders are: ");
+    int first = 1;
+    for (int i = 1; i <= n; i++) {
+        if (isLeader[i]) {
+            if (!first) printf(", ");
+            printf("%d", i);
+            first = 0;
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
+
+
+
+
