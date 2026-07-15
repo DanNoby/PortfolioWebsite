@@ -90,7 +90,7 @@
           <div class="home-text">
             <h1 class="name">Danny Noby Joseph</h1>
             <p>
-              Sophomore at Vellore Institute of Technology, Chennai pursuing
+              Senior at Vellore Institute of Technology, Chennai pursuing
               Computer Science with a specialization in AI & Machine Learning.
               Passionate game developer with a love for mathematics, physics,
               and building cutting-edge LLM projects.
@@ -162,6 +162,43 @@
         </div>
 
         <div class="portfolio-container">
+          <div class="portfolio-item program game all" data-aos="fade-up">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img
+                  src="src/vfab_demo.gif"
+                  alt="Virtual Fab Photolithography"
+                />
+                <div class="portfolio-overlay">
+                  <a
+                    href="https://github.com/DanNoby/vfab_photolithography/"
+                    class="view-project"
+                    ><i class="fas fa-external-link-alt"></i
+                  ></a>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Virtual Fab Photolithography</h3>
+                <div class="tags">
+                  <span class="tag">Unity</span>
+                  <span class="tag">ONNX</span>
+                  <span class="tag">C#</span>
+                </div>
+                <p class="project-description">
+                  Physics and AI-driven cleanroom simulation modeling the core
+                  semiconductor fabrication stations for photolithography.
+                  Integrates real-time neural network regression (.onnx) for
+                  thin-film interferometry visualization.
+                </p>
+                <a
+                  href="https://github.com/DanNoby/vfab_photolithography/"
+                  class="portfolio-link"
+                  >View Project <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
           <div class="portfolio-item game all" data-aos="fade-up">
             <div class="portfolio-card">
               <div class="portfolio-image">
@@ -458,12 +495,17 @@
           </div>
 
           <div class="contact-form" data-aos="slide-left">
-            <form id="contactForm">
+            <form
+              id="contactForm"
+              action="https://formspree.io/f/xaqrnzzb"
+              method="POST"
+            >
               <div class="form-group">
                 <label for="name">Your Name</label>
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   class="form-control"
                   placeholder="Enter your name"
                   required
@@ -474,6 +516,7 @@
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   class="form-control"
                   placeholder="Enter your email"
                   required
@@ -484,6 +527,7 @@
                 <input
                   type="text"
                   id="phone"
+                  name="phone"
                   class="form-control"
                   placeholder="Enter your phone (optional)"
                 />
@@ -492,6 +536,7 @@
                 <label for="message">Message</label>
                 <textarea
                   id="message"
+                  name="message"
                   class="form-control"
                   placeholder="Type your message here..."
                   rows="5"
@@ -619,20 +664,6 @@
               title="LinkedIn"
             >
               <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a
-              href="https://x.com/dannynoby?s=11"
-              class="social-btn"
-              title="Twitter"
-            >
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/_danny.exe_/"
-              class="social-btn"
-              title="Instagram"
-            >
-              <i class="fab fa-instagram"></i>
             </a>
           </div>
         </div>

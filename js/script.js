@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     },
-    { threshold: 0.5 }
+    { threshold: 0.5 },
   );
 
   // Observe skill progress elements
@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       const targetModal = document.getElementById(
-        this.getAttribute("data-target")
+        this.getAttribute("data-target"),
       );
 
       if (targetModal) {
@@ -353,15 +353,29 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.disabled = true;
 
       // Simulate API call
-      setTimeout(() => {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        contactForm.reset();
-        showNotification(
-          "Message sent successfully! I'll get back to you soon.",
-          "success"
-        );
-      }, 2000);
+      fetch("https://formspree.io/f/xaqrnzzb", {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" },
+      })
+        .then((response) => {
+          if (response.ok) {
+            contactForm.reset();
+            showNotification(
+              "Message sent successfully! I'll get back to you soon.",
+              "success",
+            );
+          } else {
+            showNotification(
+              "Oops! There was a problem sending your message.",
+              "error",
+            );
+          }
+        })
+        .finally(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        });
     });
   }
 
